@@ -2,9 +2,15 @@ import re
 from collections import defaultdict
 import os
 
+debugging = True
+
+JSON = True
+
+if debugging: print('test')
+
 ## Ultra messing around
 def isotopeIndexer(filepath):
-    # Check if filepath is valid
+    # Validate the file path
     if not os.path.isfile(filepath):
         print(f"File not found: {filepath}")
         print("Directory listing:")
@@ -15,35 +21,38 @@ def isotopeIndexer(filepath):
     with open(filepath, 'r', encoding='utf-8') as file:
         lines = file.readlines()
 
-    atomName = 'undefined'
-    j = 0
-    while j < len(lines):
-        current_line = lines[j].strip()
-        if current_line.startswith('|-id'):
-            regexElemLine = re.search(r'\|-id=(.*?)-(.*?)\s*$', current_line)
-            if regexElemLine:
-                if atomName == 'undefined':
-                    atomName = regexElemLine.group(1).strip()
-                    print(f'const {atomName} = [')
-                nucleode_count = regexElemLine.group(2).strip()
-        else:
-            if atomName != 'undefined':
-                if current_line.startswith('| <sup>'):
-                    if lines[j - 1] == r'\|-id=Thorium-(.*)\s*$':
-                        j += 1
-                    else:
-                        decayLine = lines[j - 1]
-                        decay_type = decayLine.split('| ')
-                        decay_type = [dt.strip() for dt in decay_type if dt.strip()]
-                        decayType = str(decay_type)
-                        findall1 = re.findall("[α,γ,β]", decayType)
-                        findall2 = re.findall(r"IT\b", decayType)
-                        findall3 = re.findall(r"EC\b", decayType)
-                        if findall1 or findall2 or findall3:
-                            print(f'{{nucleodeCount: {nucleode_count}, decayType: {decayType}}},')
-                        j += 1
-        j += 1
+    atom_name = None
+    print_data = []
+    for i, line in enumerate(lines):
+        line = line.strip()
 
-    print(']')
+        # Detect isotope ID and extract atom name and nucleode count
+        if line.startswith('|-id'):
+            match = re.search(r'\|-id=(.*?)-(.*?)\s*$', line)
+            if match:
+                if atom_name is None:
+                    atom_name = match.group(1).strip()
+                    if not JSON: print(f'const {atom_name} = [')
+                    if JSON:
+                        print(f'%')
+                        print(f'    "{atom_name}": [')
+                nucleode_count = match.group(2).strip()
+        elif atom_name and line.startswith('| <sup>'):
+            # Handle decay type
+            decay_line = lines[i - 1].strip()
+            decay_types = [dt.strip() for dt in decay_line.split('| ') if dt.strip()]
+            decay_type_str = str(decay_types)
+            if re.search("[α,γ,β]", decay_type_str) or re.search(r"IT\b", decay_type_str) or re.search(r"EC\b", decay_type_str):
+                if not JSON: print_data.append(f'{{nucleodeCount: {nucleode_count}, decayType: {decay_type_str}}},')
+                if JSON: print_data.append(f'{{"nucleodeCount": "{nucleode_count}", "decayType": {decay_type_str.replace("'", '"')}}},')
+
+    # Print the collected data
+    for entry in print_data:
+        print(f'        {entry}')
+    
+    if not JSON: print(']')
+    if JSON:
+        print('    ]')
+        print('&')
 
 isotopeIndexer(r'C:\Users\Gebruiker\Documents\GitHub\nuclear_reactions\fission_indexes\inputs\thorium.txt')
