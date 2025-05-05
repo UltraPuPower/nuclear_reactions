@@ -39,24 +39,25 @@ def isotopeIndexer(filepath):
                 atom_name = match.group(1).strip()
             nucleode_count = match.group(2).strip()
         # Check for the decay type line
-        elif atom_name and line.startswith('| <sup>'):
+        elif atom_name and re.search(r'\|\s*(?:<sup>(\d{1,3})<\/sup>|{{sup\|(\d{1,3})}})([A-Za-z]{1,2})', line):
             decay_line = lines[i - 1].strip()
             decay_types = [dt.strip() for dt in decay_line.split('| ') if dt.strip()]
             decay_type_str = str(decay_types)
             # Check if the string contains any of the decay types
-            if re.search("[α,γ,β]", decay_type_str) or re.search(r"IT\b", decay_type_str) or re.search(r"EC\b", decay_type_str):
-                # Replace special characters that are not valid in JSON or JS
-                decay_type_str = decay_type_str.replace('\u03b1', 'a')
-                decay_type_str = decay_type_str.replace('\u03b2', 'b')
-                decay_type_str = decay_type_str.replace('\u03b3', 'g')
-                decay_type_str = decay_type_str.replace('\u2212', '-')
-                # create a list to store decay type matches with their corresponding nucleode count
-                if JS: print_dataJS.append(f"{{nucleodeCount: '{nucleode_count}', decayType: {decay_type_str}}},\n")
-                if JSON:
-                    decay_type_str = decay_type_str.replace('"', '\u1234')
-                    decay_type_str = decay_type_str.replace("'", '"')
-                    decay_type_str = decay_type_str.replace('\u1234', "'")
-                    print_dataJSON.append(f'{{"nucleodeCount": "{nucleode_count}", "decayType": {decay_type_str}}},\n')
+            for target in ['α', 'β', 'γ', 'IT\b', 'EC\b', 'CD\b', 'n\b', '2n\b', 'p\b', '2p\b']:
+                if re.search(f"{target}", decay_type_str):
+                    # Replace special characters that are not valid in JSON or JS
+                    decay_type_str = decay_type_str.replace('\u03b1', 'a')
+                    decay_type_str = decay_type_str.replace('\u03b2', 'b')
+                    decay_type_str = decay_type_str.replace('\u03b3', 'g')
+                    decay_type_str = decay_type_str.replace('\u2212', '-')
+                    # create a list to store decay type matches with their corresponding nucleode count
+                    if JS: print_dataJS.append(f"{{nucleodeCount: '{nucleode_count}', decayType: {decay_type_str}}},\n")
+                    if JSON:
+                        decay_type_str = decay_type_str.replace('"', '\u1234')
+                        decay_type_str = decay_type_str.replace("'", '"')
+                        decay_type_str = decay_type_str.replace('\u1234', "'")
+                        print_dataJSON.append(f'{{"nucleodeCount": "{nucleode_count}", "decayType": {decay_type_str}}},\n')
 
     # Print the collected data
     if JS:
@@ -92,7 +93,7 @@ def isotopeIndexer(filepath):
 # example
 isotopeIndexer(r'C:\Users\Gebruiker\Documents\GitHub\nuclear_reactions\fission_indexes\inputs\thorium.txt')
 '''
-atoms =['Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron', 'Carbon', 'Nitrogen', 'Oxygen', 'Fluorine', 'Neon', 'Sodium', 'Magnesium', 'Aluminium', 'Silicon', 'Phosphor',
+atoms =['Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron', 'Carbon', 'Nitrogen', 'Oxygen', 'Fluorine', 'Neon', 'Sodium', 'Magnesium', 'Aluminium', 'Silicon', 'Phosphorus',
         'Sulfur', 'Chlorine', 'Argon', 'Potassium', 'Calcium', 'Scandium', 'Titanium', 'Vanadium', 'Chromium', 'Manganese', 'Iron', 'Cobalt', 'Nickel', 'Copper', 'Zinc', 'Gallium',
         'Germanium', 'Arsenic', 'Selenium', 'Bromine', 'Krypton', 'Rubidium', 'Strontium', 'Yttrium', 'Zirconium', 'Niobium', 'Molybdenum', 'Technetium', 'Ruthenium', 'Rhodium',
         'Palladium', 'Silver', 'Cadmium', 'Indium', 'Tin', 'Antimony', 'Tellurium', 'Iodine', 'Xenon', 'Caesium', 'Barium', 'Lanthanum', 'Cerium', 'Praseodymium', 'Neodymium',

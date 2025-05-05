@@ -14,7 +14,7 @@
         {"protonCount": 12, "atomName": "Magnesium", "symbol": "Mg"},
         {"protonCount": 13, "atomName": "Aluminium", "symbol": "Al"},
         {"protonCount": 14, "atomName": "Silicon", "symbol": "Si"},
-        {"protonCount": 15, "atomName": "Phosphor", "symbol": "P"},
+        {"protonCount": 15, "atomName": "Phosphorus", "symbol": "P"},
         {"protonCount": 16, "atomName": "Sulfur", "symbol": "S"},
         {"protonCount": 17, "atomName": "Chlorine", "symbol": "Cl"},
         {"protonCount": 18, "atomName": "Argon", "symbol": "Ar"},
