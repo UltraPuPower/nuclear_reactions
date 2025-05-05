@@ -124,25 +124,82 @@ atomLegend = [
     {'atomName': 'Oganesson', 'symbol': 'Og'},
 ]
 
-debugging = False
-if debugging: print('debugging')
+def debug(msg, raw):
+    if debugging and not raw: print(msg)
+    if debugging and raw: print(msg)
 
+debugging = False
+debug('debugging', False)
+
+# Raw debugging wil print a lot more data, but doing so will quickly fill up the console
 debuggingRaw = False
-if debuggingRaw: print('debugging raw lines')
+debug('debugging raw lines', True)
 
 JS = True
-if debugging: print('JS')
+debug('JS', False)
 
 JSON = True
-if debugging: print('JSON')
+debug('JSON', False)
+
+name_to_symbol = {atom['atomName']: atom['symbol'] for atom in atomLegend}
+symbol_to_name = {atom['symbol']: atom['atomName'] for atom in atomLegend}
+
+def validateNucleonCount(tempElement_symbol, tempNucleonCount, symbol):
+    if tempElement_symbol == symbol:
+        nucleonCount = tempNucleonCount
+        return nucleonCount
+
+def checkFilePath(filepath):
+    if not os.path.isfile(filepath):
+        print(f"File not found: {filepath}")
+        print("Directory listing:")
+        parent_dir = os.path.dirname(filepath)
+        print(os.listdir(parent_dir))
+        return
+
+def validFileChars(string):
+    for part in [{'mesh': '\u03b1','new': 'a'}, {'mesh': '\u03b2', 'new': 'b'}, {'mesh': '\u03b3', 'new': 'g'}, {'mesh': '\u2212', 'new': '-'}]:
+        string = string.replace(part['mesh'], part['new'])
+    return string
+
+def validJSONQuotes(string):    
+    for part in [{'mesh': '"', 'new': '\u1234'}, {'mesh': "'", 'new': '"'}, {'mesh': '\u1234', 'new': "'"}]:
+        string = string.replace(part['mesh'], part['new'])
+
+def writeConstJS(name, data):
+    filename = os.path.join(r'C:\Users\Gebruiker\Documents\GitHub\nuclear_reactions\indexes\js\atoms', f"{name}.js")
+    # Check if the file already exists
+    if not os.path.exists(filename):
+        open(filename, "x")
+        with open(filename, 'a') as f:
+            f.write(f'const {name} = [\n')
+            for entry in data:
+                f.write(f'    {entry}')
+            f.write(f']\n')
+        print(f'File: "{name}.js" written to: {os.path.abspath(r'C:\Users\Gebruiker\Documents\GitHub\nuclear_reactions\indexes\js\atoms')}')
+    else:
+        print(f'File: "{name}.js" already exists. Skipping write.')
+
+def writeConstJSON(name, data):
+    filename = os.path.join(r'C:\Users\Gebruiker\Documents\GitHub\nuclear_reactions\indexes\json\atoms', f"{name}.json")
+    # Check if the file already exists
+    if not os.path.exists(filename):
+        open(filename, "x")
+        with open(filename, 'a') as f:
+            f.write(f'%\n')
+            f.write(f'    "{name}": [\n')
+            for entry in data:
+                f.write(f'        {entry}')
+            f.write(f'    ]\n')
+            f.write('&')
+        print(f'File: "{name}.json" written to: {os.path.abspath(r'C:\Users\Gebruiker\Documents\GitHub\nuclear_reactions\indexes\json\atoms')}')
+    else:
+        print(f'File: "{name}.json" already exists. Skipping write.')
 
 def isotopeIndexer(element):
 
-    name_to_symbol = {atom['atomName']: atom['symbol'] for atom in atomLegend}
-    symbol_to_name = {atom['symbol']: atom['atomName'] for atom in atomLegend}
-
     symbol = name_to_symbol[element]
-    if debugging: print(f'symbol: {symbol}')
+    debug(f'symbol: {symbol}', False)
 
     filepath = f'C:\\Users\\Gebruiker\\Documents\\GitHub\\nuclear_reactions\\fission_indexes\\inputs\\{element.lower()}.txt'
 
@@ -155,12 +212,7 @@ def isotopeIndexer(element):
     nucleonCount = None
 
     # Check if the file path is valid
-    if not os.path.isfile(filepath):
-        print(f"File not found: {filepath}")
-        print("Directory listing:")
-        parent_dir = os.path.dirname(filepath)
-        print(os.listdir(parent_dir))
-        return
+    checkFilePath(filepath)
 
     # Read the file
     with open(filepath, 'r', encoding='utf-8') as file:
@@ -168,101 +220,55 @@ def isotopeIndexer(element):
     
     for i, line in enumerate(lines):
         line = line.strip()
-        if debuggingRaw: print(f'line: {line}')
-
-        # Pattern searches for isotopes lines
-        # Pattern 1: <sup>207</sup>Th
-        match1 = re.search(r'\|.*\s*<sup>(\d{1,3}m?\d?)</sup>\s*([A-Za-z]{1,2})', line)
+        debug(f'line: {line}', True)
+        
+        match1 = re.search(r'\|.*\s*<sup>(\d{1,3}m?\d?)</sup>\s*([A-Za-z]{1,2})', line)# Pattern 1: <sup>207</sup>Th
         if match1:
-            if debugging: print(f'match1: {match1.group()}')
+            debug(f'match1: {match1.group()}', False)
             tempNucleonCount = match1.group(1).strip()
             tempElement_symbol = match1.group(2).strip()
-            if debugging: print(f'tempNucleonCount: {tempNucleonCount}, tempElement_symbol: {tempElement_symbol}')
-            if tempElement_symbol == symbol:
-                nucleonCount = tempNucleonCount
-                continue
+            debug(f'tempNucleonCount: {tempNucleonCount}, tempElement_symbol: {tempElement_symbol}', False)
+            validateNucleonCount(tempElement_symbol, tempNucleonCount, symbol)
 
-        # Pattern 2: {{sup|75}}Ni
-        match2 = re.search(r'\|.*\s*{{sup\|(\d{1,3}m?\d?)}}\s*([A-Za-z]{1,2})', line)
+        match2 = re.search(r'\|.*\s*{{sup\|(\d{1,3}m?\d?)}}\s*([A-Za-z]{1,2})', line)# Pattern 2: {{sup|75}}Ni
         if match2:
-            if debugging: print(f'match2: {match2.group()}')
+            debug(f'match2: {match2.group()}', False)
             tempNucleonCount = match2.group(1).strip()
             tempElement_symbol = match2.group(2).strip()
-            if debugging: print(f'tempNucleonCount: {tempNucleonCount}, tempElement_symbol: {tempElement_symbol}')
-            if tempElement_symbol == symbol:
-                nucleonCount = tempNucleonCount
-                continue
+            debug(f'tempNucleonCount: {tempNucleonCount}, tempElement_symbol: {tempElement_symbol}', False)
+            validateNucleonCount(tempElement_symbol, tempNucleonCount, symbol)
 
-        # Pattern 3: {{SimpleNuclide|Copper|68}}
-        match3 = re.search(r'\|.*{{SimpleNuclide\|([A-Za-z]+)\|(\d{1,3}m?\d?)}}', line)
+        match3 = re.search(r'\|.*{{SimpleNuclide\|([A-Za-z]+)\|(\d{1,3}m?\d?)}}', line)# Pattern 3: {{SimpleNuclide|Copper|68}}
         if match3:
-            if debugging: print(f'match3: {match3.group()}')
+            debug(f'match3: {match3.group()}', False)
             element_name = match3.group(1).strip()
             tempNucleonCount = match3.group(2).strip()
-            for atom in atomLegend:
-                if atom['atomName'] == element_name:
-                    tempElement_symbol = atom['symbol']
-                    if debugging: print(f'Mapped {element_name} to symbol {tempElement_symbol}')
-                    if tempElement_symbol == symbol:
-                        nucleonCount = tempNucleonCount
-                        break
+            tempElement_symbol = name_to_symbol[element_name]
+            debug(f'tempNucleonCount: {tempNucleonCount}, tempElement_symbol: {tempElement_symbol}', False)
+            validateNucleonCount(tempElement_symbol, tempNucleonCount, symbol)
         
-        if debuggingRaw: print(f'nucleonCount:{nucleonCount}')
-        # Check for decay lines
+        debug(f'nucleonCount:{nucleonCount}', True)
+
         decay_line = lines[i - 1].strip()
-        if debuggingRaw: print(f'prevLine:{decay_line}')
+        debug(f'prevLine:{decay_line}', True)
         if not decay_line.startswith('|-') and nucleonCount != None:
             decay_types = [dt.strip() for dt in decay_line.split('|') if dt.strip()]
             decay_type_str = str(decay_types)
-            if debugging: print(f'prevLineStr:{decay_type_str}')
-            # Check if the string contains any of the decay types
+            debug(f'prevLineStr:{decay_type_str}', False)
             for target in ['α', 'β', 'γ', 'IT\b', 'EC\b', 'CD\b', 'n\b', '2n\b', 'p\b', '2p\b']:
                 if re.search(f"{target}", decay_type_str):
-                    # Replace special characters that are not valid in JSON or JS
-                    for part in [{'fi': '\u03b1','ne': 'a'}, {'fi': '\u03b2', 'ne': 'b'}, {'fi': '\u03b3', 'ne': 'g'}, {'fi': '\u2212', 'ne': '-'}]:
-                        decay_type_str = decay_type_str.replace(part['fi'], part['ne'])
-                    # create a list to store decay type matches with their corresponding nucleode count
+                    validFileChars(decay_type_str)
                     if JS: print_dataJS.append(f"{{nucleodeCount: '{nucleonCount}', decayType: {decay_type_str}}},\n")
-                    if JSON:
-                        for part in [{'fi': '"','ne': '\u1234'}, {'fi': "'", 'ne': '"'}, {'fi': '\u1234', 'ne': "'"}]:
-                            decay_type_str = decay_type_str.replace(part['fi'], part['ne'])
-                        print_dataJSON.append(f'{{"nucleodeCount": "{nucleonCount}", "decayType": {decay_type_str}}},\n')
+                    if JSON: print_dataJSON.append(f'{{"nucleodeCount": "{nucleonCount}", "decayType": {validJSONQuotes(decay_type_str)}}},\n')
     
-    if not symbol and debugging: print('No symbol found')
+    if not symbol: debug('No symbol found', False)
 
-    # Print the collected data
-    if JS:
-        filename = os.path.join(r'C:\Users\Gebruiker\Documents\GitHub\nuclear_reactions\indexes\js\atoms', f"{atom_name}.js")
-        # Check if the file already exists
-        if not os.path.exists(filename):
-            open(filename, "x")
-            with open(filename, 'a') as f:
-                f.write(f'const {atom_name} = [\n')
-                for entry in print_dataJS:
-                    f.write(f'    {entry}')
-                f.write(f']\n')
-            print(f'File: "{atom_name}.js" written to: {os.path.abspath(r'C:\Users\Gebruiker\Documents\GitHub\nuclear_reactions\indexes\js\atoms')}')
-        else:
-            print(f'File: "{atom_name}.js" already exists. Skipping write.')
+    if JS: writeConstJS(atom_name, print_dataJS)
 
-    if JSON:
-        filename = os.path.join(r'C:\Users\Gebruiker\Documents\GitHub\nuclear_reactions\indexes\json\atoms', f"{atom_name}.json")
-        # Check if the file already exists
-        if not os.path.exists(filename):
-            open(filename, "x")
-            with open(filename, 'a') as f:
-                f.write(f'%\n')
-                f.write(f'    "{atom_name}": [\n')
-                for entry in print_dataJSON:
-                    f.write(f'        {entry}')
-                f.write(f'    ]\n')
-                f.write('&')
-            print(f'File: "{atom_name}.json" written to: {os.path.abspath(r'C:\Users\Gebruiker\Documents\GitHub\nuclear_reactions\indexes\json\atoms')}')
-        else:
-            print(f'File: "{atom_name}.json" already exists. Skipping write.')
+    if JSON: writeConstJSON(atom_name, print_dataJSON)
 
 # example
 isotopeIndexer('Thorium')
 '''
-for atom in atoms:
-    print(f'C:\\Users\\Gebruiker\\Documents\\GitHub\\nuclear_reactions\\fission_indexes\\inputs\\{atom.lower()}.txt') #'''
+for atom in atomLegend:
+    isotopeIndexer(atom['atomName'])'''

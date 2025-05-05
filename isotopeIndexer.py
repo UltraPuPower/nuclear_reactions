@@ -2,17 +2,19 @@ import re
 from collections import defaultdict
 import os
 
+def debug(msg):
+    if debugging: print(msg)
+
 debugging = False
-if debugging: print('debugging')
+debug('debugging')
 
 JS = True
-if debugging: print('JS')
+debug('JS')
 
 JSON = True
-if debugging: print('JSON')
+debug('JSON')
 
-def isotopeIndexer(filepath):
-    # Check if the file path is valid
+def checkFilePath(filepath):
     if not os.path.isfile(filepath):
         print(f"File not found: {filepath}")
         print("Directory listing:")
@@ -20,17 +22,62 @@ def isotopeIndexer(filepath):
         print(os.listdir(parent_dir))
         return
 
+def validFileChars(string):
+    for part in [{'mesh': '\u03b1','new': 'a'}, {'mesh': '\u03b2', 'new': 'b'}, {'mesh': '\u03b3', 'new': 'g'}, {'mesh': '\u2212', 'new': '-'}]:
+        string = string.replace(part['mesh'], part['new'])
+    return string
+
+def validJSONQuotes(string):    
+    for part in [{'mesh': '"', 'new': '\u1234'}, {'mesh': "'", 'new': '"'}, {'mesh': '\u1234', 'new': "'"}]:
+        string = string.replace(part['mesh'], part['new'])
+
+def writeConstJS(name, data):
+    filename = os.path.join(r'C:\Users\Gebruiker\Documents\GitHub\nuclear_reactions\indexes\js\atoms', f"{name}.js")
+    # Check if the file already exists
+    if not os.path.exists(filename):
+        open(filename, "x")
+        with open(filename, 'a') as f:
+            f.write(f'const {name} = [\n')
+            for entry in data:
+                f.write(f'    {entry}')
+            f.write(f']\n')
+        print(f'File: "{name}.js" written to: {os.path.abspath(r'C:\Users\Gebruiker\Documents\GitHub\nuclear_reactions\indexes\js\atoms')}')
+    else:
+        print(f'File: "{name}.js" already exists. Skipping write.')
+
+def writeConstJSON(name, data):
+    filename = os.path.join(r'C:\Users\Gebruiker\Documents\GitHub\nuclear_reactions\indexes\json\atoms', f"{name}.json")
+    # Check if the file already exists
+    if not os.path.exists(filename):
+        open(filename, "x")
+        with open(filename, 'a') as f:
+            f.write(f'%\n')
+            f.write(f'    "{name}": [\n')
+            for entry in data:
+                f.write(f'        {entry}')
+            f.write(f'    ]\n')
+            f.write('&')
+        print(f'File: "{name}.json" written to: {os.path.abspath(r'C:\Users\Gebruiker\Documents\GitHub\nuclear_reactions\indexes\json\atoms')}')
+    else:
+        print(f'File: "{name}.json" already exists. Skipping write.')
+
+def isotopeIndexer(filepath):
+    # Check if the file path is valid
+    checkFilePath(filepath)
+
     # Read the file
     with open(filepath, 'r', encoding='utf-8') as file:
         lines = file.readlines()
 
     print_dataJS = []
+
     print_dataJSON = []
+
     atom_name = None
 
     for i, line in enumerate(lines):
         line = line.strip()
-        if debugging: print(f'line: {line}')
+        debug(f'line: {line}')
         # Check for the start of a new isotope section and register the nucleode count
         if line.startswith('|-id'):
             match = re.search(r'\|-id=(.*?)-(.*?)\s*$', line)
@@ -46,49 +93,13 @@ def isotopeIndexer(filepath):
             # Check if the string contains any of the decay types
             for target in ['α', 'β', 'γ', 'IT\b', 'EC\b', 'CD\b', 'n\b', '2n\b', 'p\b', '2p\b']:
                 if re.search(f"{target}", decay_type_str):
-                    # Replace special characters that are not valid in JSON or JS
-                    decay_type_str = decay_type_str.replace('\u03b1', 'a')
-                    decay_type_str = decay_type_str.replace('\u03b2', 'b')
-                    decay_type_str = decay_type_str.replace('\u03b3', 'g')
-                    decay_type_str = decay_type_str.replace('\u2212', '-')
-                    # create a list to store decay type matches with their corresponding nucleode count
+                    validFileChars(decay_type_str)
                     if JS: print_dataJS.append(f"{{nucleodeCount: '{nucleode_count}', decayType: {decay_type_str}}},\n")
-                    if JSON:
-                        decay_type_str = decay_type_str.replace('"', '\u1234')
-                        decay_type_str = decay_type_str.replace("'", '"')
-                        decay_type_str = decay_type_str.replace('\u1234', "'")
-                        print_dataJSON.append(f'{{"nucleodeCount": "{nucleode_count}", "decayType": {decay_type_str}}},\n')
+                    if JSON: print_dataJSON.append(f'{{"nucleodeCount": "{nucleode_count}", "decayType": {validJSONQuotes(decay_type_str)}}},\n')
 
-    # Print the collected data
-    if JS:
-        filename = os.path.join(r'C:\Users\Gebruiker\Documents\GitHub\nuclear_reactions\indexes\js\atoms', f"{atom_name}.js")
-        # Check if the file already exists
-        if not os.path.exists(filename):
-            open(filename, "x")
-            with open(filename, 'a') as f:
-                f.write(f'const {atom_name} = [\n')
-                for entry in print_dataJS:
-                    f.write(f'    {entry}')
-                f.write(f']\n')
-            print(f'File: "{atom_name}.js" written to: {os.path.abspath(r'C:\Users\Gebruiker\Documents\GitHub\nuclear_reactions\indexes\js\atoms')}')
-        else:
-            print(f'File: "{atom_name}.js" already exists. Skipping write.')
+    if JS: writeConstJS(atom_name, print_dataJS)
 
-    if JSON:
-        filename = os.path.join(r'C:\Users\Gebruiker\Documents\GitHub\nuclear_reactions\indexes\json\atoms', f"{atom_name}.json")
-        # Check if the file already exists
-        if not os.path.exists(filename):
-            open(filename, "x")
-            with open(filename, 'a') as f:
-                f.write(f'%\n')
-                f.write(f'    "{atom_name}": [\n')
-                for entry in print_dataJSON:
-                    f.write(f'        {entry}')
-                f.write(f'    ]\n')
-                f.write('&')
-            print(f'File: "{atom_name}.json" written to: {os.path.abspath(r'C:\Users\Gebruiker\Documents\GitHub\nuclear_reactions\indexes\json\atoms')}')
-        else:
-            print(f'File: "{atom_name}.json" already exists. Skipping write.')
+    if JSON: writeConstJSON(atom_name, print_dataJSON)
 
 # example
 isotopeIndexer(r'C:\Users\Gebruiker\Documents\GitHub\nuclear_reactions\fission_indexes\inputs\thorium.txt')
