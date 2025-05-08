@@ -1,0 +1,19 @@
+{
+    "lithium": [
+        {"nucleodeCount": "3", "decayType": ["[[proton emission", "p]] ?<ref group='n' name='decay mode 1'>Decay mode shown is energetically allowed, but has not been experimentally observed to occur in this nuclide.</ref>"]},
+        {"nucleodeCount": "4", "decayType": ["p"]},
+        {"nucleodeCount": "5", "decayType": ["p"]},
+        {"nucleodeCount": "6", "decayType": ["[[Nuclear isomer#Decay processes", "IT]]"]},
+        {"nucleodeCount": "8", "decayType": ["b<sup>-</sup>"]},
+        {"nucleodeCount": "9", "decayType": ["b<sup>-</sup> ({{val", "49.5", "(1.0)", "u=%}})"]},
+        {"nucleodeCount": "10", "decayType": ["n"]},
+        {"nucleodeCount": "11", "decayType": ["b<sup>-</sup>n ({{val", "86.3", "(9)", "u=%}})"]},
+        {"nucleodeCount": "11", "decayType": ["b<sup>-</sup> ({{val", "6.0", "(1.0)", "u=%}})"]},
+        {"nucleodeCount": "11", "decayType": ["b<sup>-</sup>2n ({{val", "4.1", "(4)", "u=%}})"]},
+        {"nucleodeCount": "11", "decayType": ["b<sup>-</sup>a ({{val", "1.7", "(3)", "u=%}})"]},
+        {"nucleodeCount": "11", "decayType": ["b<sup>-</sup>d ({{val", "0.0130", "(13)", "u=%}})"]},
+        {"nucleodeCount": "11", "decayType": ["b<sup>-</sup>t ({{val", "0.0093", "(8)", "u=%}})"]},
+        {"nucleodeCount": "12", "decayType": ["n ?<ref group='n' name='decay mode 1' />"]},
+        {"nucleodeCount": "13", "decayType": ["2n"]},
+    ]
+}

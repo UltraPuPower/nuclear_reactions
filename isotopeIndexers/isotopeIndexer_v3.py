@@ -208,8 +208,9 @@ def checkFilePath(filepath):
         return True
 
 def validFileChars(string):
-    for part in [{'mesh': '\u03b1','new': 'a'}, {'mesh': '\u03b2', 'new': 'b'}, {'mesh': '\u03b3', 'new': 'g'}, {'mesh': '\u2212', 'new': '-'},
-                 {'mesh': '\u03bc', 'new': 'MU'}, {'mesh': '×', 'new': 'x'}]:
+    for part in [{'mesh': '\u03b1','new': 'a'}, {'mesh': '\u03b2', 'new': 'b'}, {'mesh': '\u03b3', 'new': 'g'}, {'mesh': '\u03b5', 'new': 'e'},
+                 {'mesh': '\u2212', 'new': '-'}, {'mesh': '\u03bc', 'new': 'MU'}, {'mesh': '×', 'new': 'x'}, {'mesh': '\u2192', 'new': '=>'},
+                 {'mesh': '\u2264', 'new': '<=='}, {'mesh': '\u2265', 'new': '>=='}]:
         string = string.replace(part['mesh'], part['new'])
     return string
 
@@ -290,7 +291,7 @@ def isotopeIndexer(element):
                 debug(prevLine, False)
                 decayListStr = str([dt.strip() for dt in prevLine.split('|') if dt.strip()])
                 decayTypeStr = validFileChars(decayListStr)
-                print(f'nucleodeCount: {nucleonCount}, decayType: {decayTypeStr}')
+                debug(f'nucleodeCount: {nucleonCount}, decayType: {decayTypeStr}', False)
                 if JS: print_dataJS.append(f"{{nucleodeCount: '{nucleonCount}', decayType: {decayTypeStr}}},\n")
                 if JSON: print_dataJSON.append(f'{{"nucleodeCount": "{nucleonCount}", "decayType": {validJSONQuotes(decayTypeStr)}}},\n')
         debug('----=====----', False)
@@ -302,7 +303,7 @@ def isotopeIndexer(element):
     if JSON: writeConstJSON(atom_name, print_dataJSON)
 
 # example
-isotopeIndexer('Thorium')
-'''
+#isotopeIndexer('Thorium')
+#'''
 for atom in atomLegend:
     isotopeIndexer(atom['atomName'])#'''

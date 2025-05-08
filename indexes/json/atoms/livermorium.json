@@ -1,0 +1,11 @@
+{
+    "livermorium": [
+        {"nucleodeCount": "288", "decayType": ["a"]},
+        {"nucleodeCount": "None", "decayType": ["a"]},
+        {"nucleodeCount": "290", "decayType": ["a"]},
+        {"nucleodeCount": "291", "decayType": ["a"]},
+        {"nucleodeCount": "292", "decayType": ["a"]},
+        {"nucleodeCount": "293", "decayType": ["a"]},
+        {"nucleodeCount": "294", "decayType": ["a ?"]},
+    ]
+}
