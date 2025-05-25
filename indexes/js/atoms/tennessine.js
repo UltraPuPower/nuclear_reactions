@@ -1,4 +1,4 @@
 const tennessine = [
-    {nucleodeCount: '293', decayType: ['[[alpha decay', 'a]]']},
+    {nucleodeCount: '293', decayType: ['a']},
     {nucleodeCount: '294', decayType: ['a']},
 ]

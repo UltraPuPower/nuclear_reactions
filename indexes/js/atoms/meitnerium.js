@@ -1,5 +1,5 @@
 const meitnerium = [
-    {nucleodeCount: '266', decayType: ['[[alpha decay', 'a]]']},
+    {nucleodeCount: '266', decayType: ['a']},
     {nucleodeCount: '266m', decayType: ['a']},
     {nucleodeCount: 'None', decayType: ['a']},
     {nucleodeCount: '268m', decayType: ['a']},

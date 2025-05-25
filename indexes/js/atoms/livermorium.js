@@ -5,5 +5,5 @@ const livermorium = [
     {nucleodeCount: '291', decayType: ['a']},
     {nucleodeCount: '292', decayType: ['a']},
     {nucleodeCount: '293', decayType: ['a']},
-    {nucleodeCount: '294', decayType: ['a ?']},
+    {nucleodeCount: '294', decayType: ['a ']},
 ]

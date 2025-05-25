@@ -1,10 +1,10 @@
 {
     "hassium": [
         {"nucleodeCount": "263", "decayType": ["[[alpha decay", "a]]"]},
-        {"nucleodeCount": "264", "decayType": ["a (70%)"]},
+        {"nucleodeCount": "264", "decayType": ["a"]},
         {"nucleodeCount": "265", "decayType": ["a"]},
         {"nucleodeCount": "265m", "decayType": ["a"]},
-        {"nucleodeCount": "None", "decayType": ["a (76%)"]},
+        {"nucleodeCount": "None", "decayType": ["a"]},
         {"nucleodeCount": "266m", "decayType": ["a"]},
         {"nucleodeCount": "267", "decayType": ["a"]},
         {"nucleodeCount": "267m", "decayType": ["a"]},
