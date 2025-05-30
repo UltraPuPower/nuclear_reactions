@@ -16,7 +16,7 @@
 /**
  * @typedef {Object} Isotope
  * @property {number} nucleodeCount - Total number of nucleons (protons + neutrons)
- * @property {string[]} decayType - Array of possible decay types ('a', 'b-', 'b+', 'e', 'g', or 'stable')
+ * @property {string[]} decayType - Array of possible decay types ('a', 'b-', 'b+', 'e', or 'stable')
  * @property {boolean} natural - Whether isotope occurs naturally
  */
 
@@ -26,6 +26,12 @@
  * b- - Beta minus: Neutron → proton conversion (p += 1, n -= 1)
  * b+ - Beta plus: Proton → neutron conversion (p -= 1, n += 1)
  * e  - Electron capture: Similar to b+, with gamma emission due to merger of a positron and an electron
+ * To be added:
+ * p  - Proton: Emits a proton from the core (p -= 1, n -= 1)
+ * n  - Neutron: Emits a neutron from the core (p, n -= 1)
+ * d  - Deuteron: Emission of a hydrogen-2 nucleus (p -= 1, n -= 2)
+ * t  - Triton: Emission of a hydrogen-3 nucleus (p -= 1, n -= 3)
+ * IT - Isomeric Transition: The release of energy to drop out of an excited state (123m => 123, 124m4 => 124)
  */
 
 /** @type {Element[]} */
