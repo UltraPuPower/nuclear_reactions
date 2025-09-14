@@ -1,7 +1,7 @@
 {
     "dysprosium": [
-        {"nucleodeCount": "139", "decayType": ["[[beta decay", "b+]] (~)"]},
-        {"nucleodeCount": "139", "decayType": ["b+, [[proton emission", "p]] (~)"]},
+        {"nucleodeCount": "139", "decayType": ["[[beta decay", "b+]]"]},
+        {"nucleodeCount": "139", "decayType": ["b+, [[proton emission", "p]]"]},
         {"nucleodeCount": "140", "decayType": ["b+"]},
         {"nucleodeCount": "140", "decayType": ["b+, p"]},
         {"nucleodeCount": "140m", "decayType": ["[[isomeric transition", "IT]]"]},
@@ -19,7 +19,7 @@
         {"nucleodeCount": "145", "decayType": ["b+"]},
         {"nucleodeCount": "145", "decayType": ["b+, p"]},
         {"nucleodeCount": "145m", "decayType": ["b+"]},
-        {"nucleodeCount": "145m", "decayType": ["b+, p (~)"]},
+        {"nucleodeCount": "145m", "decayType": ["b+, p"]},
         {"nucleodeCount": "146", "decayType": ["b+"]},
         {"nucleodeCount": "146m", "decayType": ["IT"]},
         {"nucleodeCount": "147", "decayType": ["b+"]},

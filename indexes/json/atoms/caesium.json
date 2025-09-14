@@ -105,8 +105,8 @@
         {"nucleodeCount": "148m", "decayType": ["IT"]},
         {"nucleodeCount": "149", "decayType": ["b-"]},
         {"nucleodeCount": "149", "decayType": ["b-, n"]},
-        {"nucleodeCount": "150", "decayType": ["b- (~)"]},
-        {"nucleodeCount": "150", "decayType": ["b-, n (~)"]},
+        {"nucleodeCount": "150", "decayType": ["b-"]},
+        {"nucleodeCount": "150", "decayType": ["b-, n"]},
         {"nucleodeCount": "151", "decayType": ["b-"]},
     ]
 }

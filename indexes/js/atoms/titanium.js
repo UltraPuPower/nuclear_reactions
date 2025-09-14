@@ -1,6 +1,6 @@
 const titanium = [
     {nucleodeCount: '39', decayType: ['b+, p']},
-    {nucleodeCount: '39', decayType: ['b+ (~)']},
+    {nucleodeCount: '39', decayType: ['b+']},
     {nucleodeCount: '39', decayType: ['b+, 2p']},
     {nucleodeCount: '40', decayType: ['b+, p']},
     {nucleodeCount: '40', decayType: ['b+']},

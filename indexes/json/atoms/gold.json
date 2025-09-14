@@ -1,7 +1,7 @@
 {
     "gold": [
-        {"nucleodeCount": "169", "decayType": ["[[proton emission", "p]] (~)"]},
-        {"nucleodeCount": "169", "decayType": ["[[alpha decay", "a]] (~)"]},
+        {"nucleodeCount": "169", "decayType": ["[[proton emission", "p]]"]},
+        {"nucleodeCount": "169", "decayType": ["[[alpha decay", "a]]"]},
         {"nucleodeCount": "170", "decayType": ["p"]},
         {"nucleodeCount": "170", "decayType": ["a"]},
         {"nucleodeCount": "170m", "decayType": ["p"]},

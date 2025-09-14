@@ -1,7 +1,7 @@
 {
     "astatine": [
-        {"nucleodeCount": "190", "decayType": ["[[alpha decay", "a]] (~)"]},
-        {"nucleodeCount": "190", "decayType": ["[[proton emission", "p]] (~)"]},
+        {"nucleodeCount": "190", "decayType": ["[[alpha decay", "a]]"]},
+        {"nucleodeCount": "190", "decayType": ["[[proton emission", "p]]"]},
         {"nucleodeCount": "190", "decayType": ["a"]},
         {"nucleodeCount": "191", "decayType": ["a"]},
         {"nucleodeCount": "191m", "decayType": ["a"]},

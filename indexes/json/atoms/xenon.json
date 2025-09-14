@@ -11,7 +11,7 @@
         {"nucleodeCount": "113", "decayType": ["b+"]},
         {"nucleodeCount": "113", "decayType": ["b+, [[proton emission", "p]]"]},
         {"nucleodeCount": "113", "decayType": ["a"]},
-        {"nucleodeCount": "113", "decayType": ["b+, a (~)"]},
+        {"nucleodeCount": "113", "decayType": ["b+, a"]},
         {"nucleodeCount": "113m", "decayType": ["[[isomeric transition", "IT]]"]},
         {"nucleodeCount": "114", "decayType": ["b+"]},
         {"nucleodeCount": "115", "decayType": ["b+"]},

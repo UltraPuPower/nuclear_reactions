@@ -17,13 +17,13 @@
         {"nucleodeCount": "260m", "decayType": ["a"]},
         {"nucleodeCount": "261", "decayType": ["a"]},
         {"nucleodeCount": "262", "decayType": ["a"]},
-        {"nucleodeCount": "263", "decayType": ["a (~)"]},
-        {"nucleodeCount": "263", "decayType": ["b+ (~)<ref group='n'>Heaviest nuclide known to undergo b+ decay</ref>"]},
+        {"nucleodeCount": "263", "decayType": ["a"]},
+        {"nucleodeCount": "263", "decayType": ["b+<ref group='n'>Heaviest nuclide known to undergo b+ decay</ref>"]},
         {"nucleodeCount": "None", "decayType": ["EC"]},
         {"nucleodeCount": "None", "decayType": ["website=nscl.msu.edu", "access-date=29 June 2023}}</ref>"]},
         {"nucleodeCount": "None", "decayType": ["a<ref name=Mc2022/>"]},
         {"nucleodeCount": "None", "decayType": ["EC"]},
-        {"nucleodeCount": "None", "decayType": ["a (~)"]},
+        {"nucleodeCount": "None", "decayType": ["a"]},
         {"nucleodeCount": "None", "decayType": ["EC<ref name='270Db-Stock'>{{Cite book", "url=https://books.google.com/booksid=zVrdAAAAQBAJ&q=isotope+29Rf&pg=PT305", "title=Encyclopedia of Nuclear Physics and its Applications", "isbn=9783527649266", "last1=Stock", "first1=Reinhard", "date=2013-09-13", "publisher=John Wiley & Sons}}</ref>"]},
     ]
 }

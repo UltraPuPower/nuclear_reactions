@@ -1,7 +1,7 @@
 {
     "lanthanum": [
-        {"nucleodeCount": "116", "decayType": ["[[proton emission", "p]] (~)"]},
-        {"nucleodeCount": "116", "decayType": ["[[beta decay", "b+]] (~)"]},
+        {"nucleodeCount": "116", "decayType": ["[[proton emission", "p]]"]},
+        {"nucleodeCount": "116", "decayType": ["[[beta decay", "b+]]"]},
         {"nucleodeCount": "116m", "decayType": ["[[isomeric transition", "IT]]"]},
         {"nucleodeCount": "117", "decayType": ["p"]},
         {"nucleodeCount": "117", "decayType": ["b+"]},
