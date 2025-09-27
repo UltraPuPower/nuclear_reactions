@@ -1,8 +1,0 @@
-{
-    "hydrogen": [
-        {"nucleodeCount": "1", "decayType": ["{{val", "1.007825031898", "(14)}}"]},
-        {"nucleodeCount": "None", "decayType": ["[[beta decay", "b{{sup", "-}}]]"]},
-        {"nucleodeCount": "4", "decayType": ["[[neutron emission", "n]]"]},
-        {"nucleodeCount": "5", "decayType": ["2n"]},
-    ]
-}

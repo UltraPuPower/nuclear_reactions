@@ -1,5 +1,0 @@
-const oganesson = [
-    {nucleodeCount: 'None', decayType: ['<!--', '-']},
-    {nucleodeCount: '294', decayType: ['a']},
-    {nucleodeCount: '294', decayType: ['a']},
-]
