@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radioactive Decay Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Radioactive Decay Simulator</h1>
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="element-select">Select Element:</label>
+                <select id="element-select">
+                    <option value="">-- Select Element --</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="isotope-select">Select Isotope:</label>
+                <select id="isotope-select" disabled>
+                    <option value="">-- Select Isotope --</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="decay-type">Decay Type:</label>
+                <select id="decay-type" disabled>
+                    <option value="">-- Select Decay Type --</option>
+                    <option value="alpha">Alpha Decay</option>
+                    <option value="beta">Beta Decay</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label>&nbsp;</label>
+                <button id="decay-button" disabled>Attempt Decay</button>
+            </div>
+        </div>
+        
+        <div class="display-container">
+            <div class="particles" id="particles"></div>
+            <div class="animation-area" id="animation-area">
+                <div class="element-display">Select an Element</div>
+                <div class="element-info">Choose an element and isotope to begin</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="controller.js"></script>
+</body>
+</html>
