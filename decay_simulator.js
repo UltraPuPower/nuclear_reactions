@@ -1,4 +1,5 @@
 import isotopeList from "./isotopeData.js"
+import {changeElementText, changeButtonText} from "./base_utils.js";
 
 // Index
 /**
@@ -382,14 +383,3 @@ const elementProtonCount = (elementName = 0, elementSymbol = 0) => {
 
     return elementProtonCount
 };
-
-// Web testing
-const testButton = document.getElementById('nc_reaction_test');
-
-testButton.addEventListener('click', function() {
-    console.log(nucleodeIndex(99,252));
-    console.log(protonCountFinder('Uranium'));
-    // document.body.classList.toggle('dark-mode');
-    document.getElementById("result").innerHTML =  'Text or something';
-    
-});
