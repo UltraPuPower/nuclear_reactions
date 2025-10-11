@@ -1,5 +1,4 @@
 import isotopeList from "./isotopeData.js"
-import {changeElementText, changeButtonText} from "./base_utils.js";
 
 // Index
 /**

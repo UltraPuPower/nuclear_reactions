@@ -63,5 +63,3 @@ function themeSwitcher(newTheme) {
 
 // Set a theme
 themeSwitcher(getCurrentTheme);
-
-export default {changeElementText, changeButtonText};
