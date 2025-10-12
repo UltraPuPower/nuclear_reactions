@@ -1,10 +1,10 @@
 [data-theme="light"] {
-    --colorBackground: #ACECD3;
+    --colorBackground: #7ce0b7;
     --colorBannerText: #113040;
     --colorNormalText: #000000;
     --colorHighlights: #1E5A78;
-    --colorBoxAccents: #7ce0b7;
-    --colorBoxShadows: #4cd49b;
+    --colorBoxAccents: #4cd49b;
+    --colorBoxShadows: #2cb77d;
 }
 
 [data-theme="dark"] {
@@ -54,7 +54,7 @@ select:focus, button:focus {
     border-color: var(--colorHighlights);
 }
 
-.controls {
+.box {
     width: 220px;
     display: flex;
     flex-wrap: wrap;
