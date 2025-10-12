@@ -2,12 +2,18 @@
     --colorBackground: #ACECD3;
     --colorBannerText: #113040;
     --colorNormalText: #000000;
+    --colorHighlights: #1E5A78;
+    --colorBoxAccents: #7ce0b7;
+    --colorBoxShadows: #4cd49b;
 }
 
 [data-theme="dark"] {
     --colorBackground: #332B2B;
     --colorBannerText: #4CAF50;
     --colorNormalText: #ffffff;
+    --colorHighlights: #30D035;
+    --colorBoxAccents: #1e1e1e;
+    --colorBoxShadows: #000000;
 }
 
 body {
@@ -29,9 +35,37 @@ p {
 
 button {
     cursor: pointer;
+    border-radius: 4px;
     color: var(--colorNormalText);
     background-color: var(--colorBackground);
     border: 0.15rem solid var(--colorBannerText);
+}
+
+select {
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+    color: var(--colorNormalText);
+    background-color: var(--colorBackground);
+    border: 0.15rem solid var(--colorBannerText);
+}
+
+select:focus, button:focus {
+    border-color: var(--colorHighlights);
+}
+
+.controls {
+    width: 220px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--colorBoxAccents);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--colorBoxShadows);
+}
+
+.interactable {
+    padding: 10px 0;
 }
 
 .banner {
@@ -63,7 +97,7 @@ button {
     margin: 0;
     position: absolute;
     top: 50%;
-    left: 97.5%;
+    left: 97.25%;
     transform: translate(-50%, -50%);
 }
 

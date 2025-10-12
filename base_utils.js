@@ -1,6 +1,19 @@
+/**
+ * Base Utils is a file with the standard web tools and functions usable across all websites
+ * It contains base functions that other files can copy over, and provides usefull examples
+ * 
+ * All code in this file is free to be copied, redistributed or otherwise used in accordance to the MIT license, but I would appreciate if you left this message in it
+ *  - UltraPuPower1
+ */
+
+const buttonTest = document.getElementById("attemptReaction");
+buttonTest.addEventListener('click', function() {
+    
+});
+
 const buttonTheme = document.getElementById("buttonTheme");
 buttonTheme.addEventListener('click', function() {
-    themeSwitcher(themeFlip())
+    themeSwitcher(themeFlip());
 });
 
 // Base utils
@@ -10,6 +23,35 @@ function changeElementText(element, result) {
 
 function changeButtonText(button, text) {
     button.innerText = text;
+};
+
+function showState(searchElement, outputElement) {
+	let text = document.getElementById(searchElement).disabled;
+    changeElementText(outputElement, text);
+};
+
+function switchState(element) {
+	let elementState = document.getElementById(element).disabled;
+    
+    if (elementState) {
+    	document.getElementById(element).disabled=false;
+    } else {
+    	document.getElementById(element).disabled=true;
+    }
+};
+
+function getInput(element) {
+	let input = document.getElementById(element).value;
+    return input
+};
+
+function fillDropDown(element, textArray) {
+    textArray.forEach(text => {
+        const option = document.createElement('option');
+        option.value = text.toLowerCase();
+        option.textContent = text;
+        element.appendChild(option);
+    });
 };
 
 // Theme switching utils
@@ -42,7 +84,7 @@ function updateTheme(theme) {
 function themeFlip() {
     const newTheme = getCurrentTheme == "dark" ? "light" : "dark";
 
-    return newTheme
+    return newTheme;
 }
 
 function themeSwitcher(newTheme) {
