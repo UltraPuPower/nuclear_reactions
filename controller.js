@@ -38,7 +38,8 @@ function updateIsotopeDropdown() {
     let elementName = atomData[selectedElement-1].elementName;
     console.log(`Element name: ${elementName}`);
 
-    elementObject.forEach(isotope => {
+    let isotopeArray = elementObject.isotopes
+    isotopeArray.forEach(isotope => {
         const option = document.createElement('option');
         option.value = isotope.nucleonCount;
         option.textContent = `${elementName}-${isotope.nucleonCount}`;
