@@ -1,5 +1,10 @@
 import { timePrefixDict, atomData, findElementObject, findNucleodeObject, decayOperation, elementName, elementProtonCount } from "./decay_simulator.js";
 
+const elementSelect = document.getElementById('element-select');
+const isotopeSelect = document.getElementById('isotope-select');
+const decaySelect = document.getElementById('decay-select');
+const reactionButton = document.getElementById('attemptReaction');
+
 atomData.forEach(element => {
     const option = document.createElement('option');
     option.value = element.protonCount;
@@ -7,33 +12,39 @@ atomData.forEach(element => {
     elementSelect.appendChild(option);
 });
 
-const elementSelect = document.getElementById('element-select');
+// Disable Further buttons until element is selected (true => disabled)
+setState("isotope-select", true);
+setState("decay-select", true);
+setState("attemptReaction", true);
+
 elementSelect.addEventListener('change', updateIsotopeDropdown());
 
 function updateIsotopeDropdown() {
     console.log('You changed the element selector');
+    setState("isotope-select", false);
+    setState("decay-select", true);
+    setState("attemptReaction", true);
 };
 
-const isotopeSelect = document.getElementById('isotope-select');
 isotopeSelect.addEventListener('change', updateDecayDropdown());
 
 function updateDecayDropdown() {
     console.log('You changed the isotope selector');
+    setState("decay-select", false);
+    setState("attemptReaction", true);
 };
 
-const decaySelect = document.getElementById('decay-select');
 decaySelect.addEventListener('change', updateDecayButton());
 
 function updateDecayButton() {
     console.log('You changed the decay selector');
+    setState("attemptReaction", false);
 };
 
-const reactionButton = document.getElementById('attemptReaction');
 reactionButton.addEventListener('click', executeDecayAction());
 
 function executeDecayAction() {
-        console.log('You clicked the reaction button');
-
+    console.log('You clicked the reaction button');
 };
 
 // Base utils
@@ -45,9 +56,13 @@ function executeDecayAction() {
         button.innerText = text;
     };
 
-    function giveState(searchElement, outputElement) {
+    function giveState(searchElement) {
         let text = document.getElementById(searchElement).disabled;
         return text;
+    };
+
+    function setState(element, state) {
+        document.getElementById(element).disabled=state;
     };
 
     function switchState(element) {

@@ -26,17 +26,21 @@ function changeButtonText(button, text) {
 };
 
 function giveState(searchElement) {
-	let text = document.getElementById(searchElement).disabled;
+    let text = document.getElementById(searchElement).disabled;
     return text;
 };
 
+function setState(element, state) {
+    document.getElementById(element).disabled=state;
+};
+
 function switchState(element) {
-	let elementState = document.getElementById(element).disabled;
+    let elementState = document.getElementById(element).disabled;
     
     if (elementState) {
-    	document.getElementById(element).disabled=false;
+        document.getElementById(element).disabled=false;
     } else {
-    	document.getElementById(element).disabled=true;
+        document.getElementById(element).disabled=true;
     }
 };
 
