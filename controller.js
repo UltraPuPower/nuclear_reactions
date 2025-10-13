@@ -21,24 +21,26 @@ elementSelect.addEventListener('change', updateIsotopeDropdown());
 
 function updateIsotopeDropdown() {
     console.log('You changed the element selector');
-    setState("isotope-select", false);
-    setState("decay-select", true);
-    setState("attemptReaction", true);
+    isotopeSelect.innerHTML = '<option value="">-- Select Isotope --</option>';
+    decaySelect.innerHTML = '<option value="">-- Select Decay Mode --</option>';
+    isotopeSelect.disabled = true;
+    decaySelect.disabled = true;
+    reactionButton.disabled = true;
 };
 
 isotopeSelect.addEventListener('change', updateDecayDropdown());
 
 function updateDecayDropdown() {
     console.log('You changed the isotope selector');
-    setState("decay-select", false);
-    setState("attemptReaction", true);
+    decaySelect.disabled = true;
+    reactionButton.disabled = true;
 };
 
 decaySelect.addEventListener('change', updateDecayButton());
 
 function updateDecayButton() {
     console.log('You changed the decay selector');
-    setState("attemptReaction", false);
+    reactionButton.disabled = true;
 };
 
 reactionButton.addEventListener('click', executeDecayAction());
