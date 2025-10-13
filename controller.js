@@ -20,27 +20,58 @@ setState("attemptReaction", true);
 elementSelect.addEventListener('change', updateIsotopeDropdown());
 
 function updateIsotopeDropdown() {
-    console.log('You changed the element selector');
-    isotopeSelect.innerHTML = '<option value="">-- Select Isotope --</option>';
-    decaySelect.innerHTML = '<option value="">-- Select Decay Mode --</option>';
+    isotopeSelect.value = "base";
     isotopeSelect.disabled = true;
+    decaySelect.value = "base";
     decaySelect.disabled = true;
     reactionButton.disabled = true;
+
+    let selectedElement = elementSelect.value;
+    if (selectedElement == "base") {
+        console.log(`Base element selected: ${selectedElement}`);
+        return;
+    }
+
+    console.log(`Proton Count: ${selectedElement}`);
+    let elementObject = findElementObject(selectedElement);
+    console.log(`Element object: ${elementObject}`);
+    let elementName = atomData[selectedElement-1].elementName;
+    console.log(`Element name: ${elementName}`);
+
+    elementObject.forEach(isotope => {
+        const option = document.createElement('option');
+        option.value = isotope.nucleonCount;
+        option.textContent = `${elementName}-${isotope.nucleonCount}`;
+        console.log(`Added option: ${option.textContent}`);
+        elementSelect.appendChild(option);
+    });
+
+    isotopeSelect.disabled = false;
+    console.log('You changed the element selector');
 };
 
 isotopeSelect.addEventListener('change', updateDecayDropdown());
 
 function updateDecayDropdown() {
-    console.log('You changed the isotope selector');
+    decaySelect.value = "base";
     decaySelect.disabled = true;
     reactionButton.disabled = true;
+
+    if (isotopeSelect.value == "base") return
+
+    decaySelect.disabled = false;
+    console.log('You changed the isotope selector');
 };
 
 decaySelect.addEventListener('change', updateDecayButton());
 
 function updateDecayButton() {
-    console.log('You changed the decay selector');
     reactionButton.disabled = true;
+
+    if (decaySelect.value == "base") return
+
+    reactionButton.disabled = false;
+    console.log('You changed the decay selector');
 };
 
 reactionButton.addEventListener('click', executeDecayAction());
