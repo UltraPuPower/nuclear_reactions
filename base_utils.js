@@ -25,9 +25,9 @@ function changeButtonText(button, text) {
     button.innerText = text;
 };
 
-function showState(searchElement, outputElement) {
+function giveState(searchElement) {
 	let text = document.getElementById(searchElement).disabled;
-    changeElementText(outputElement, text);
+    return text;
 };
 
 function switchState(element) {

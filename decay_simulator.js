@@ -62,124 +62,124 @@ import isotopeList from "./isotopeData.js"
  * @property {string} elementSymbol - Symbol of an element
  */
 const atomData = [
-    {'protonCount': 1, 'elementName': 'H', 'elementSymbol': 'Hydrogen'},
-    {'protonCount': 2, 'elementName': 'He', 'elementSymbol': 'Helium'},
-    {'protonCount': 3, 'elementName': 'Li', 'elementSymbol': 'Lithium'},
-    {'protonCount': 4, 'elementName': 'Be', 'elementSymbol': 'Beryllium'},
-    {'protonCount': 5, 'elementName': 'B', 'elementSymbol': 'Boron'},
-    {'protonCount': 6, 'elementName': 'C', 'elementSymbol': 'Carbon'},
-    {'protonCount': 7, 'elementName': 'N', 'elementSymbol': 'Nitrogen'},
-    {'protonCount': 8, 'elementName': 'O', 'elementSymbol': 'Oxygen'},
-    {'protonCount': 9, 'elementName': 'F', 'elementSymbol': 'Fluorine'},
-    {'protonCount': 10, 'elementName': 'Ne', 'elementSymbol': 'Neon'},
-    {'protonCount': 11, 'elementName': 'Na', 'elementSymbol': 'Sodium'},
-    {'protonCount': 12, 'elementName': 'Mg', 'elementSymbol': 'Magnesium'},
-    {'protonCount': 13, 'elementName': 'Al', 'elementSymbol': 'Aluminium'},
-    {'protonCount': 14, 'elementName': 'Si', 'elementSymbol': 'Silicon'},
-    {'protonCount': 15, 'elementName': 'P', 'elementSymbol': 'Phosphorus'},
-    {'protonCount': 16, 'elementName': 'S', 'elementSymbol': 'Sulfur'},
-    {'protonCount': 17, 'elementName': 'Cl', 'elementSymbol': 'Chlorine'},
-    {'protonCount': 18, 'elementName': 'Ar', 'elementSymbol': 'Argon'},
-    {'protonCount': 19, 'elementName': 'K', 'elementSymbol': 'Potassium'},
-    {'protonCount': 20, 'elementName': 'Ca', 'elementSymbol': 'Calcium'},
-    {'protonCount': 21, 'elementName': 'Sc', 'elementSymbol': 'Scandium'},
-    {'protonCount': 22, 'elementName': 'Ti', 'elementSymbol': 'Titanium'},
-    {'protonCount': 23, 'elementName': 'V', 'elementSymbol': 'Vanadium'},
-    {'protonCount': 24, 'elementName': 'Cr', 'elementSymbol': 'Chromium'},
-    {'protonCount': 25, 'elementName': 'Mn', 'elementSymbol': 'Manganese'},
-    {'protonCount': 26, 'elementName': 'Fe', 'elementSymbol': 'Iron'},
-    {'protonCount': 27, 'elementName': 'Co', 'elementSymbol': 'Cobalt'},
-    {'protonCount': 28, 'elementName': 'Ni', 'elementSymbol': 'Nickel'},
-    {'protonCount': 29, 'elementName': 'Cu', 'elementSymbol': 'Copper'},
-    {'protonCount': 30, 'elementName': 'Zn', 'elementSymbol': 'Zinc'},
-    {'protonCount': 31, 'elementName': 'Ga', 'elementSymbol': 'Gallium'},
-    {'protonCount': 32, 'elementName': 'Ge', 'elementSymbol': 'Germanium'},
-    {'protonCount': 33, 'elementName': 'As', 'elementSymbol': 'Arsenic'},
-    {'protonCount': 34, 'elementName': 'Se', 'elementSymbol': 'Selenium'},
-    {'protonCount': 35, 'elementName': 'Br', 'elementSymbol': 'Bromine'},
-    {'protonCount': 36, 'elementName': 'Kr', 'elementSymbol': 'Krypton'},
-    {'protonCount': 37, 'elementName': 'Rb', 'elementSymbol': 'Rubidium'},
-    {'protonCount': 38, 'elementName': 'Sr', 'elementSymbol': 'Strontium'},
-    {'protonCount': 39, 'elementName': 'Y', 'elementSymbol': 'Yttrium'},
-    {'protonCount': 40, 'elementName': 'Zr', 'elementSymbol': 'Zirconium'},
-    {'protonCount': 41, 'elementName': 'Nb', 'elementSymbol': 'Niobium'},
-    {'protonCount': 42, 'elementName': 'Mo', 'elementSymbol': 'Molybdenum'},
-    {'protonCount': 43, 'elementName': 'Tc', 'elementSymbol': 'Technetium'},
-    {'protonCount': 44, 'elementName': 'Ru', 'elementSymbol': 'Ruthenium'},
-    {'protonCount': 45, 'elementName': 'Rh', 'elementSymbol': 'Rhodium'},
-    {'protonCount': 46, 'elementName': 'Pd', 'elementSymbol': 'Palladium'},
-    {'protonCount': 47, 'elementName': 'Ag', 'elementSymbol': 'Silver'},
-    {'protonCount': 48, 'elementName': 'Cd', 'elementSymbol': 'Cadmium'},
-    {'protonCount': 49, 'elementName': 'In', 'elementSymbol': 'Indium'},
-    {'protonCount': 50, 'elementName': 'Sn', 'elementSymbol': 'Tin'},
-    {'protonCount': 51, 'elementName': 'Sb', 'elementSymbol': 'Antimony'},
-    {'protonCount': 52, 'elementName': 'Te', 'elementSymbol': 'Tellurium'},
-    {'protonCount': 53, 'elementName': 'I', 'elementSymbol': 'Iodine'},
-    {'protonCount': 54, 'elementName': 'Xe', 'elementSymbol': 'Xenon'},
-    {'protonCount': 55, 'elementName': 'Cs', 'elementSymbol': 'Caesium'},
-    {'protonCount': 56, 'elementName': 'Ba', 'elementSymbol': 'Barium'},
-    {'protonCount': 57, 'elementName': 'La', 'elementSymbol': 'Lanthanum'},
-    {'protonCount': 58, 'elementName': 'Ce', 'elementSymbol': 'Cerium'},
-    {'protonCount': 59, 'elementName': 'Pr', 'elementSymbol': 'Praseodymium'},
-    {'protonCount': 60, 'elementName': 'Nd', 'elementSymbol': 'Neodymium'},
-    {'protonCount': 61, 'elementName': 'Pm', 'elementSymbol': 'Promethium'},
-    {'protonCount': 62, 'elementName': 'Sm', 'elementSymbol': 'Samarium'},
-    {'protonCount': 63, 'elementName': 'Eu', 'elementSymbol': 'Europium'},
-    {'protonCount': 64, 'elementName': 'Gd', 'elementSymbol': 'Gadolinium'},
-    {'protonCount': 65, 'elementName': 'Tb', 'elementSymbol': 'Terbium'},
-    {'protonCount': 66, 'elementName': 'Dy', 'elementSymbol': 'Dysprosium'},
-    {'protonCount': 67, 'elementName': 'Ho', 'elementSymbol': 'Holmium'},
-    {'protonCount': 68, 'elementName': 'Er', 'elementSymbol': 'Erbium'},
-    {'protonCount': 69, 'elementName': 'Tm', 'elementSymbol': 'Thulium'},
-    {'protonCount': 70, 'elementName': 'Yb', 'elementSymbol': 'Ytterbium'},
-    {'protonCount': 71, 'elementName': 'Lu', 'elementSymbol': 'Lutetium'},
-    {'protonCount': 72, 'elementName': 'Hf', 'elementSymbol': 'Hafnium'},
-    {'protonCount': 73, 'elementName': 'Ta', 'elementSymbol': 'Tantalum'},
-    {'protonCount': 74, 'elementName': 'W', 'elementSymbol': 'Tungsten'},
-    {'protonCount': 75, 'elementName': 'Re', 'elementSymbol': 'Rhenium'},
-    {'protonCount': 76, 'elementName': 'Os', 'elementSymbol': 'Osmium'},
-    {'protonCount': 77, 'elementName': 'Ir', 'elementSymbol': 'Iridium'},
-    {'protonCount': 78, 'elementName': 'Pt', 'elementSymbol': 'Platinum'},
-    {'protonCount': 79, 'elementName': 'Au', 'elementSymbol': 'Gold'},
-    {'protonCount': 80, 'elementName': 'Hg', 'elementSymbol': 'Mercury'},
-    {'protonCount': 81, 'elementName': 'Tl', 'elementSymbol': 'Thallium'},
-    {'protonCount': 82, 'elementName': 'Pb', 'elementSymbol': 'Lead'},
-    {'protonCount': 83, 'elementName': 'Bi', 'elementSymbol': 'Bismuth'},
-    {'protonCount': 84, 'elementName': 'Po', 'elementSymbol': 'Polonium'},
-    {'protonCount': 85, 'elementName': 'At', 'elementSymbol': 'Astatine'},
-    {'protonCount': 86, 'elementName': 'Rn', 'elementSymbol': 'Radon'},
-    {'protonCount': 87, 'elementName': 'Fr', 'elementSymbol': 'Francium'},
-    {'protonCount': 88, 'elementName': 'Ra', 'elementSymbol': 'Radium'},
-    {'protonCount': 89, 'elementName': 'Ac', 'elementSymbol': 'Actinium'},
-    {'protonCount': 90, 'elementName': 'Th', 'elementSymbol': 'Thorium'},
-    {'protonCount': 91, 'elementName': 'Pa', 'elementSymbol': 'Protactinium'},
-    {'protonCount': 92, 'elementName': 'U', 'elementSymbol': 'Uranium'},
-    {'protonCount': 93, 'elementName': 'Np', 'elementSymbol': 'Neptunium'},
-    {'protonCount': 94, 'elementName': 'Pu', 'elementSymbol': 'Plutonium'}, 
-    {'protonCount': 95, 'elementName': 'Am', 'elementSymbol': 'Americium'},
-    {'protonCount': 96, 'elementName': 'Cm', 'elementSymbol': 'Curium'},
-    {'protonCount': 97, 'elementName': 'Bk', 'elementSymbol': 'Berkelium'},
-    {'protonCount': 98, 'elementName': 'Cf', 'elementSymbol': 'Californium'},
-    {'protonCount': 99, 'elementName': 'Es', 'elementSymbol': 'Einsteinium'},
-    {'protonCount': 100, 'elementName': 'Fm', 'elementSymbol': 'Fermium'},
-    {'protonCount': 101, 'elementName': 'Md', 'elementSymbol': 'Mendelevium'},
-    {'protonCount': 102, 'elementName': 'No', 'elementSymbol': 'Nobelium'},
-    {'protonCount': 103, 'elementName': 'Lr', 'elementSymbol': 'Lawrencium'},
-    {'protonCount': 104, 'elementName': 'Rf', 'elementSymbol': 'Rutherfordium'},
-    {'protonCount': 105, 'elementName': 'Db', 'elementSymbol': 'Dubnium'},
-    {'protonCount': 106, 'elementName': 'Sg', 'elementSymbol': 'Seaborgium'},
-    {'protonCount': 107, 'elementName': 'Bh', 'elementSymbol': 'Bohrium'},
-    {'protonCount': 108, 'elementName': 'Hs', 'elementSymbol': 'Hassium'},
-    {'protonCount': 109, 'elementName': 'Mt', 'elementSymbol': 'Meitnerium'},
-    {'protonCount': 110, 'elementName': 'Ds', 'elementSymbol': 'Darmstadtium'},
-    {'protonCount': 111, 'elementName': 'Rg', 'elementSymbol': 'Roentgenium'},
-    {'protonCount': 112, 'elementName': 'Cn', 'elementSymbol': 'Copernicium'},
-    {'protonCount': 113, 'elementName': 'Nh', 'elementSymbol': 'Nihonium'},
-    {'protonCount': 114, 'elementName': 'Fl', 'elementSymbol': 'Flerovium'},
-    {'protonCount': 115, 'elementName': 'Mc', 'elementSymbol': 'Moscovium'},
-    {'protonCount': 116, 'elementName': 'Lv', 'elementSymbol': 'Livermorium'},
-    {'protonCount': 117, 'elementName': 'Ts', 'elementSymbol': 'Tennessine'},
-    {'protonCount': 118, 'elementName': 'Og', 'elementSymbol': 'Oganesson'}
+    {'protonCount': 1, 'elementSymbol': 'H', 'elementName': 'Hydrogen'},
+    {'protonCount': 2, 'elementSymbol': 'He', 'elementName': 'Helium'},
+    {'protonCount': 3, 'elementSymbol': 'Li', 'elementName': 'Lithium'},
+    {'protonCount': 4, 'elementSymbol': 'Be', 'elementName': 'Beryllium'},
+    {'protonCount': 5, 'elementSymbol': 'B', 'elementName': 'Boron'},
+    {'protonCount': 6, 'elementSymbol': 'C', 'elementName': 'Carbon'},
+    {'protonCount': 7, 'elementSymbol': 'N', 'elementName': 'Nitrogen'},
+    {'protonCount': 8, 'elementSymbol': 'O', 'elementName': 'Oxygen'},
+    {'protonCount': 9, 'elementSymbol': 'F', 'elementName': 'Fluorine'},
+    {'protonCount': 10, 'elementSymbol': 'Ne', 'elementName': 'Neon'},
+    {'protonCount': 11, 'elementSymbol': 'Na', 'elementName': 'Sodium'},
+    {'protonCount': 12, 'elementSymbol': 'Mg', 'elementName': 'Magnesium'},
+    {'protonCount': 13, 'elementSymbol': 'Al', 'elementName': 'Aluminium'},
+    {'protonCount': 14, 'elementSymbol': 'Si', 'elementName': 'Silicon'},
+    {'protonCount': 15, 'elementSymbol': 'P', 'elementName': 'Phosphorus'},
+    {'protonCount': 16, 'elementSymbol': 'S', 'elementName': 'Sulfur'},
+    {'protonCount': 17, 'elementSymbol': 'Cl', 'elementName': 'Chlorine'},
+    {'protonCount': 18, 'elementSymbol': 'Ar', 'elementName': 'Argon'},
+    {'protonCount': 19, 'elementSymbol': 'K', 'elementName': 'Potassium'},
+    {'protonCount': 20, 'elementSymbol': 'Ca', 'elementName': 'Calcium'},
+    {'protonCount': 21, 'elementSymbol': 'Sc', 'elementName': 'Scandium'},
+    {'protonCount': 22, 'elementSymbol': 'Ti', 'elementName': 'Titanium'},
+    {'protonCount': 23, 'elementSymbol': 'V', 'elementName': 'Vanadium'},
+    {'protonCount': 24, 'elementSymbol': 'Cr', 'elementName': 'Chromium'},
+    {'protonCount': 25, 'elementSymbol': 'Mn', 'elementName': 'Manganese'},
+    {'protonCount': 26, 'elementSymbol': 'Fe', 'elementName': 'Iron'},
+    {'protonCount': 27, 'elementSymbol': 'Co', 'elementName': 'Cobalt'},
+    {'protonCount': 28, 'elementSymbol': 'Ni', 'elementName': 'Nickel'},
+    {'protonCount': 29, 'elementSymbol': 'Cu', 'elementName': 'Copper'},
+    {'protonCount': 30, 'elementSymbol': 'Zn', 'elementName': 'Zinc'},
+    {'protonCount': 31, 'elementSymbol': 'Ga', 'elementName': 'Gallium'},
+    {'protonCount': 32, 'elementSymbol': 'Ge', 'elementName': 'Germanium'},
+    {'protonCount': 33, 'elementSymbol': 'As', 'elementName': 'Arsenic'},
+    {'protonCount': 34, 'elementSymbol': 'Se', 'elementName': 'Selenium'},
+    {'protonCount': 35, 'elementSymbol': 'Br', 'elementName': 'Bromine'},
+    {'protonCount': 36, 'elementSymbol': 'Kr', 'elementName': 'Krypton'},
+    {'protonCount': 37, 'elementSymbol': 'Rb', 'elementName': 'Rubidium'},
+    {'protonCount': 38, 'elementSymbol': 'Sr', 'elementName': 'Strontium'},
+    {'protonCount': 39, 'elementSymbol': 'Y', 'elementName': 'Yttrium'},
+    {'protonCount': 40, 'elementSymbol': 'Zr', 'elementName': 'Zirconium'},
+    {'protonCount': 41, 'elementSymbol': 'Nb', 'elementName': 'Niobium'},
+    {'protonCount': 42, 'elementSymbol': 'Mo', 'elementName': 'Molybdenum'},
+    {'protonCount': 43, 'elementSymbol': 'Tc', 'elementName': 'Technetium'},
+    {'protonCount': 44, 'elementSymbol': 'Ru', 'elementName': 'Ruthenium'},
+    {'protonCount': 45, 'elementSymbol': 'Rh', 'elementName': 'Rhodium'},
+    {'protonCount': 46, 'elementSymbol': 'Pd', 'elementName': 'Palladium'},
+    {'protonCount': 47, 'elementSymbol': 'Ag', 'elementName': 'Silver'},
+    {'protonCount': 48, 'elementSymbol': 'Cd', 'elementName': 'Cadmium'},
+    {'protonCount': 49, 'elementSymbol': 'In', 'elementName': 'Indium'},
+    {'protonCount': 50, 'elementSymbol': 'Sn', 'elementName': 'Tin'},
+    {'protonCount': 51, 'elementSymbol': 'Sb', 'elementName': 'Antimony'},
+    {'protonCount': 52, 'elementSymbol': 'Te', 'elementName': 'Tellurium'},
+    {'protonCount': 53, 'elementSymbol': 'I', 'elementName': 'Iodine'},
+    {'protonCount': 54, 'elementSymbol': 'Xe', 'elementName': 'Xenon'},
+    {'protonCount': 55, 'elementSymbol': 'Cs', 'elementName': 'Caesium'},
+    {'protonCount': 56, 'elementSymbol': 'Ba', 'elementName': 'Barium'},
+    {'protonCount': 57, 'elementSymbol': 'La', 'elementName': 'Lanthanum'},
+    {'protonCount': 58, 'elementSymbol': 'Ce', 'elementName': 'Cerium'},
+    {'protonCount': 59, 'elementSymbol': 'Pr', 'elementName': 'Praseodymium'},
+    {'protonCount': 60, 'elementSymbol': 'Nd', 'elementName': 'Neodymium'},
+    {'protonCount': 61, 'elementSymbol': 'Pm', 'elementName': 'Promethium'},
+    {'protonCount': 62, 'elementSymbol': 'Sm', 'elementName': 'Samarium'},
+    {'protonCount': 63, 'elementSymbol': 'Eu', 'elementName': 'Europium'},
+    {'protonCount': 64, 'elementSymbol': 'Gd', 'elementName': 'Gadolinium'},
+    {'protonCount': 65, 'elementSymbol': 'Tb', 'elementName': 'Terbium'},
+    {'protonCount': 66, 'elementSymbol': 'Dy', 'elementName': 'Dysprosium'},
+    {'protonCount': 67, 'elementSymbol': 'Ho', 'elementName': 'Holmium'},
+    {'protonCount': 68, 'elementSymbol': 'Er', 'elementName': 'Erbium'},
+    {'protonCount': 69, 'elementSymbol': 'Tm', 'elementName': 'Thulium'},
+    {'protonCount': 70, 'elementSymbol': 'Yb', 'elementName': 'Ytterbium'},
+    {'protonCount': 71, 'elementSymbol': 'Lu', 'elementName': 'Lutetium'},
+    {'protonCount': 72, 'elementSymbol': 'Hf', 'elementName': 'Hafnium'},
+    {'protonCount': 73, 'elementSymbol': 'Ta', 'elementName': 'Tantalum'},
+    {'protonCount': 74, 'elementSymbol': 'W', 'elementName': 'Tungsten'},
+    {'protonCount': 75, 'elementSymbol': 'Re', 'elementName': 'Rhenium'},
+    {'protonCount': 76, 'elementSymbol': 'Os', 'elementName': 'Osmium'},
+    {'protonCount': 77, 'elementSymbol': 'Ir', 'elementName': 'Iridium'},
+    {'protonCount': 78, 'elementSymbol': 'Pt', 'elementName': 'Platinum'},
+    {'protonCount': 79, 'elementSymbol': 'Au', 'elementName': 'Gold'},
+    {'protonCount': 80, 'elementSymbol': 'Hg', 'elementName': 'Mercury'},
+    {'protonCount': 81, 'elementSymbol': 'Tl', 'elementName': 'Thallium'},
+    {'protonCount': 82, 'elementSymbol': 'Pb', 'elementName': 'Lead'},
+    {'protonCount': 83, 'elementSymbol': 'Bi', 'elementName': 'Bismuth'},
+    {'protonCount': 84, 'elementSymbol': 'Po', 'elementName': 'Polonium'},
+    {'protonCount': 85, 'elementSymbol': 'At', 'elementName': 'Astatine'},
+    {'protonCount': 86, 'elementSymbol': 'Rn', 'elementName': 'Radon'},
+    {'protonCount': 87, 'elementSymbol': 'Fr', 'elementName': 'Francium'},
+    {'protonCount': 88, 'elementSymbol': 'Ra', 'elementName': 'Radium'},
+    {'protonCount': 89, 'elementSymbol': 'Ac', 'elementName': 'Actinium'},
+    {'protonCount': 90, 'elementSymbol': 'Th', 'elementName': 'Thorium'},
+    {'protonCount': 91, 'elementSymbol': 'Pa', 'elementName': 'Protactinium'},
+    {'protonCount': 92, 'elementSymbol': 'U', 'elementName': 'Uranium'},
+    {'protonCount': 93, 'elementSymbol': 'Np', 'elementName': 'Neptunium'},
+    {'protonCount': 94, 'elementSymbol': 'Pu', 'elementName': 'Plutonium'}, 
+    {'protonCount': 95, 'elementSymbol': 'Am', 'elementName': 'Americium'},
+    {'protonCount': 96, 'elementSymbol': 'Cm', 'elementName': 'Curium'},
+    {'protonCount': 97, 'elementSymbol': 'Bk', 'elementName': 'Berkelium'},
+    {'protonCount': 98, 'elementSymbol': 'Cf', 'elementName': 'Californium'},
+    {'protonCount': 99, 'elementSymbol': 'Es', 'elementName': 'Einsteinium'},
+    {'protonCount': 100, 'elementSymbol': 'Fm', 'elementName': 'Fermium'},
+    {'protonCount': 101, 'elementSymbol': 'Md', 'elementName': 'Mendelevium'},
+    {'protonCount': 102, 'elementSymbol': 'No', 'elementName': 'Nobelium'},
+    {'protonCount': 103, 'elementSymbol': 'Lr', 'elementName': 'Lawrencium'},
+    {'protonCount': 104, 'elementSymbol': 'Rf', 'elementName': 'Rutherfordium'},
+    {'protonCount': 105, 'elementSymbol': 'Db', 'elementName': 'Dubnium'},
+    {'protonCount': 106, 'elementSymbol': 'Sg', 'elementName': 'Seaborgium'},
+    {'protonCount': 107, 'elementSymbol': 'Bh', 'elementName': 'Bohrium'},
+    {'protonCount': 108, 'elementSymbol': 'Hs', 'elementName': 'Hassium'},
+    {'protonCount': 109, 'elementSymbol': 'Mt', 'elementName': 'Meitnerium'},
+    {'protonCount': 110, 'elementSymbol': 'Ds', 'elementName': 'Darmstadtium'},
+    {'protonCount': 111, 'elementSymbol': 'Rg', 'elementName': 'Roentgenium'},
+    {'protonCount': 112, 'elementSymbol': 'Cn', 'elementName': 'Copernicium'},
+    {'protonCount': 113, 'elementSymbol': 'Nh', 'elementName': 'Nihonium'},
+    {'protonCount': 114, 'elementSymbol': 'Fl', 'elementName': 'Flerovium'},
+    {'protonCount': 115, 'elementSymbol': 'Mc', 'elementName': 'Moscovium'},
+    {'protonCount': 116, 'elementSymbol': 'Lv', 'elementName': 'Livermorium'},
+    {'protonCount': 117, 'elementSymbol': 'Ts', 'elementName': 'Tennessine'},
+    {'protonCount': 118, 'elementSymbol': 'Og', 'elementName': 'Oganesson'}
 ];
 
 /**
@@ -221,10 +221,12 @@ const decayTypeDict = {// [change protons, change nucleons]
 /**
  * Searches the index for an element with given proton count
  * @param {number} protonCount - Number of protons (atomic number)
- * @returns {boolean}
+ * @returns {Element|boolean} Element object if found, false otherwise
  */
-const elementCheck = (protonCount) => {
-    return isotopeList.find(element => element.protonCount == protonCount);
+const findElementObject = (protonCount) => {
+    if (protonCount > 118) return false;
+    const elementObject = isotopeList[protonCount-1];
+    return elementObject
 };
 
 /**
@@ -234,24 +236,9 @@ const elementCheck = (protonCount) => {
  * @returns {Isotopes|boolean} Isotope object if found, false otherwise
  */
 const findNucleodeObject = (protonCount, nucleonCount) => {
-    if (protonCount > 118) return false;
-    const elementObject = isotopeList[protonCount-1].isotopes;
+    const elementObject = findElementObject(protonCount).isotopes;
     const nucleodeObject = elementObject.find(isotope => isotope.nucleonCount == nucleonCount);
     return nucleodeObject ? nucleodeObject : false;
-};
-
-/**
- * Verifies if a specific decay type is possible for an isotope
- * @param {string} decayType - Type of decay ('a', 'b-', 'b+', 'e')
- * @param {number} protonCount - Number of protons
- * @param {number} nucleonCount - Total number of nucleons
- * @returns {boolean}
- */
-const decayCheck = (decayType, protonCount, nucleonCount) => {
-    const isotope = findNucleodeObject(protonCount, nucleonCount);
-    const decayList = isotope.decay;
-    if (decayList.find(decayObj => decayObj.decayType == decayType)) return true
-    else return false
 };
 
 /**
@@ -371,7 +358,7 @@ const elementProtonCount = (elementName = 0, elementSymbol = 0) => {
     let elementObject = '';
 
     if (!typeof elementSymbol == number) {
-        let elementObject = atomData.find(element => element.elementName == elementName);
+        let elementObject = atomData.find(element => element.elementSymbol == elementSymbol);
     }
 
     if (!typeof elementName == number) {
@@ -383,4 +370,4 @@ const elementProtonCount = (elementName = 0, elementSymbol = 0) => {
     return elementProtonCount
 };
 
-export { timePrefixDict, elementCheck };
+export { timePrefixDict, atomData, findElementObject, findNucleodeObject, decayOperation, elementName, elementProtonCount };
