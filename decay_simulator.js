@@ -383,4 +383,4 @@ const elementProtonCount = (elementName = 0, elementSymbol = 0) => {
     return elementProtonCount
 };
 
-export default { timePrefixDict, elementCheck }
+export { timePrefixDict, elementCheck };
