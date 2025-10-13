@@ -17,7 +17,7 @@ setState("isotope-select", true);
 setState("decay-select", true);
 setState("attemptReaction", true);
 
-elementSelect.addEventListener('change', updateIsotopeDropdown());
+elementSelect.addEventListener('change', updateIsotopeDropdown);
 
 function updateIsotopeDropdown() {
     isotopeSelect.value = "base";
@@ -50,7 +50,7 @@ function updateIsotopeDropdown() {
     console.log('You changed the element selector');
 };
 
-isotopeSelect.addEventListener('change', updateDecayDropdown());
+isotopeSelect.addEventListener('change', updateDecayDropdown);
 
 function updateDecayDropdown() {
     decaySelect.value = "base";
@@ -63,7 +63,7 @@ function updateDecayDropdown() {
     console.log('You changed the isotope selector');
 };
 
-decaySelect.addEventListener('change', updateDecayButton());
+decaySelect.addEventListener('change', updateDecayButton);
 
 function updateDecayButton() {
     reactionButton.disabled = true;
@@ -74,7 +74,7 @@ function updateDecayButton() {
     console.log('You changed the decay selector');
 };
 
-reactionButton.addEventListener('click', executeDecayAction());
+reactionButton.addEventListener('click', executeDecayAction);
 
 function executeDecayAction() {
     console.log('You clicked the reaction button');
