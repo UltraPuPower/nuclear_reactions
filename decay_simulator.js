@@ -335,20 +335,6 @@ const decayOperation = (decayType, protonCount, nucleonCount) => {
 };
 
 /**
- * Returns name and symbol of an element corresponding to the proton count
- * @param {number} protonCount - Number of protons
- * @returns {string[]} An array consisting of the element name and element symbol
- */
-const elementName = (protonCount) => {
-    const protonObject = atomData.find(element => element.protonCount == protonCount);
-
-    const elementName = protonObject.elementName;
-    const elementSymbol = protonObject.elementSymbol;
-
-    return [elementName, elementSymbol]
-};
-
-/**
  * Returns the proton count of an element corresponding to the element name or symbol. When both a name and symbol are entered the name takes precedent
  * @param {string} elementName A name representing an element
  * @param {string} elementSymbol A symbol representing an element
@@ -370,4 +356,4 @@ const elementProtonCount = (elementName = 0, elementSymbol = 0) => {
     return elementProtonCount
 };
 
-export { timePrefixDict, atomData, findElementObject, findNucleodeObject, decayOperation, elementName, elementProtonCount };
+export { timePrefixDict, atomData, findElementObject, findNucleodeObject, decayOperation, elementProtonCount };

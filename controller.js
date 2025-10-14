@@ -1,4 +1,4 @@
-import { timePrefixDict, atomData, findElementObject, findNucleodeObject, decayOperation, elementName, elementProtonCount } from "./decay_simulator.js";
+import { timePrefixDict, atomData, findElementObject, findNucleodeObject, decayOperation, elementProtonCount } from "./decay_simulator.js";
 
 const elementSelect = document.getElementById('element-select');
 const isotopeSelect = document.getElementById('isotope-select');
@@ -12,10 +12,9 @@ atomData.forEach(element => {
     elementSelect.appendChild(option);
 });
 
-// Disable Further buttons until element is selected (true => disabled)
-setState("isotope-select", true);
-setState("decay-select", true);
-setState("attemptReaction", true);
+isotopeSelect.disabled = true;
+decaySelect.disabled = true;
+reactionButton.disabled = true;
 
 elementSelect.addEventListener('change', updateIsotopeDropdown);
 
@@ -42,7 +41,6 @@ function updateIsotopeDropdown() {
     });
 
     isotopeSelect.disabled = false;
-    console.log('You changed the element selector');
 };
 
 isotopeSelect.addEventListener('change', updateDecayDropdown);
@@ -75,7 +73,6 @@ function updateDecayDropdown() {
     }
 
     decaySelect.disabled = false;
-    console.log('You changed the isotope selector');
 };
 
 decaySelect.addEventListener('change', updateDecayButton);
@@ -86,13 +83,22 @@ function updateDecayButton() {
     if (decaySelect.value == "base") return
 
     reactionButton.disabled = false;
-    console.log('You changed the decay selector');
 };
 
 reactionButton.addEventListener('click', executeDecayAction);
 
 function executeDecayAction() {
-    console.log('You clicked the reaction button');
+    let selectedElement = elementSelect.value;
+    let selectedIsotope = isotopeSelect.value;
+    let selectedDecayType = decaySelect.value;
+
+    console.log(`You have found the decay inputs: ${selectedDecayType}, ${selectedElement}, ${selectedIsotope}`);
+    let newIsotopeArray = decayOperation(selectedDecayType, selectedElement, selectedIsotope);
+    console.log(`You have created a new isotope: ${newIsotopeArray}`);
+    let elementName = atomData[newIsotopeArray[0]-1].elementName
+    console.log(`The element of this isotope is ${elementName}`);
+
+    changeElementText("result", `You have created the isotope ${elementName}-${newIsotopeArray[1]}`);
 };
 
 // Base utils
