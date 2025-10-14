@@ -17,27 +17,44 @@
     </div>
     <button id="buttonTheme" type="button" aria-label="Change to light theme">Change to light theme</button>
     <p id="text1">Enter your data below</p>
-    <div class="box">
-        <div class="interactable">
-            <select style='width: 215px' id="element-select">
-                <option value="base">-- Select Element --</option>
-            </select>
+    <div class="frame">
+        <div class="box">
+            <div class="controllerBox">
+                <div class="interactable">
+                    <select style='width: 215px' id="element-select">
+                        <option value="base">-- Select Element --</option>
+                    </select>
+                </div>
+                <div class="interactable">
+                    <select style='width: 215px' id="isotope-select">
+                        <option value="base">-- Select Isotope --</option>
+                    </select>
+                </div>
+                <div class="interactable">
+                    <select style='width: 215px' id="decay-select">
+                        <option value="base">-- Select Decay Mode --</option>
+                    </select>
+                </div>
+                <div class="interactable">
+                    <button style='width: 215px' id="attemptReaction">Test nuclear reaction</button>
+                </div>
+            </div>
         </div>
-        <div class="interactable">
-            <select style='width: 215px' id="isotope-select">
-                <option value="base">-- Select Isotope --</option>
-            </select>
+        <div class="box">
+            <div class="resultBox">
+                <p style='white-space: nowrap'>Your reaction produced:</p>
+                <p id = "result">Air or something</p>
+                <div class="interactable">
+                    <button id="continueReaction" style='white-space: nowrap'>Continue the nuclear reaction</button>
+                </div>
+            </div>
         </div>
-        <div class="interactable">
-            <select style='width: 215px' id="decay-select">
-                <option value="base">-- Select Decay Mode --</option>
-            </select>
-        </div>
-        <div class="interactable">
-            <button style='width: 215px' id="attemptReaction">Test Nuclear reaction</button>
+        <div class="box">
+            <div class="historyBox">
+                <p id = "result">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+            </div>
         </div>
     </div>
-    <p id = "result"></p>
     <script type="text/javascript" src="base_utils.js"></script>
     <script type="module" src="controller.js"></script>
 

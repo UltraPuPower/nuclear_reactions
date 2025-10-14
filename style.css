@@ -9,28 +9,28 @@
 
 [data-theme="dark"] {
     --colorBackground: #332B2B;
-    --colorBannerText: #4CAF50;
+    --colorBannerText: #2dd733;
     --colorNormalText: #ffffff;
-    --colorHighlights: #30D035;
+    --colorHighlights: #4CAF50;
     --colorBoxAccents: #1e1e1e;
     --colorBoxShadows: #000000;
 }
 
 body {
     background-color: var(--colorBackground);
-    padding-top: 80px
+    padding-top: 80px;
 }
  
 h1 {
     font-family: Arial;
     color: var(--colorBannerText);
-    text-align: center;
     margin-bottom: 0px;
 }
  
 p {
     color: var(--colorNormalText);
     font-family: Arial, Helvetica, sans-serif;
+    white-space: pre-line;
 }
 
 button {
@@ -38,7 +38,7 @@ button {
     border-radius: 4px;
     color: var(--colorNormalText);
     background-color: var(--colorBackground);
-    border: 0.15rem solid var(--colorBannerText);
+    border: 0.15rem solid var(--colorHighlights);
 }
 
 select {
@@ -47,25 +47,11 @@ select {
     font-size: 16px;
     color: var(--colorNormalText);
     background-color: var(--colorBackground);
-    border: 0.15rem solid var(--colorBannerText);
+    border: 0.15rem solid var(--colorHighlights);
 }
 
 select:focus, button:focus {
     border-color: var(--colorHighlights);
-}
-
-.box {
-    width: 220px;
-    display: flex;
-    flex-wrap: wrap;
-    background-color: var(--colorBoxAccents);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px var(--colorBoxShadows);
-}
-
-.interactable {
-    padding: 10px 0;
 }
 
 .banner {
@@ -79,6 +65,43 @@ select:focus, button:focus {
     text-align: center;
 }
 
+.frame {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    border-radius: 8px;
+    width: 70%;
+    max-width: 1190px;
+}
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--colorBoxAccents);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--colorBoxShadows);
+}
+
+.controllerBox {
+    width: 13%;
+    max-width: 221px;
+}
+
+.resultBox {
+    width: 13%;
+    max-width:221px;
+}
+
+.historyBox {
+    width: 44%;
+    max-width:748px;
+}
+
+.interactable {
+    padding: 10px 0;
+}
+
 #logo {
     position: absolute;
     top: 0;
@@ -86,6 +109,7 @@ select:focus, button:focus {
 }
 
 #title {
+    text-align: center;
     margin: 0;
     position: absolute;
     top: 50%;
@@ -102,10 +126,10 @@ select:focus, button:focus {
 }
 
 #buttonTheme {
+    width: 58px;
     font-size: 20px;
     font-weight: bold;
     padding: 0.5rem 1rem;
     border-radius: 2rem;
-    width: 58px;
-    border: 0.25rem solid var(--colorBannerText);
+    border: 0.25rem solid var(--colorHighlights);
 }

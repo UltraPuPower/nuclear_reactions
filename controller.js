@@ -19,9 +19,9 @@ reactionButton.disabled = true;
 elementSelect.addEventListener('change', updateIsotopeDropdown);
 
 function updateIsotopeDropdown() {
-    isotopeSelect.value = "base";
+    isotopeSelect.innerHTML = '<option value="">-- Select Isotope --</option>';
     isotopeSelect.disabled = true;
-    decaySelect.value = "base";
+    decaySelect.innerHTML = '<option value="">-- Select Decay Type --</option>';
     decaySelect.disabled = true;
     reactionButton.disabled = true;
 
@@ -46,7 +46,7 @@ function updateIsotopeDropdown() {
 isotopeSelect.addEventListener('change', updateDecayDropdown);
 
 function updateDecayDropdown() {
-    decaySelect.value = "base";
+    decaySelect.innerHTML = '<option value="">-- Select Decay Type --</option>';
     decaySelect.disabled = true;
     reactionButton.disabled = true;
 
@@ -92,53 +92,13 @@ function executeDecayAction() {
     let selectedIsotope = isotopeSelect.value;
     let selectedDecayType = decaySelect.value;
 
-    console.log(`You have found the decay inputs: ${selectedDecayType}, ${selectedElement}, ${selectedIsotope}`);
     let newIsotopeArray = decayOperation(selectedDecayType, selectedElement, selectedIsotope);
-    console.log(`You have created a new isotope: ${newIsotopeArray}`);
     let elementName = atomData[newIsotopeArray[0]-1].elementName
-    console.log(`The element of this isotope is ${elementName}`);
 
     changeElementText("result", `You have created the isotope ${elementName}-${newIsotopeArray[1]}`);
 };
 
 // Base utils
-    function changeElementText(element, result) {
-        document.getElementById(element).innerHTML =  result;
-    };
-
-    function changeButtonText(button, text) {
-        button.innerText = text;
-    };
-
-    function giveState(searchElement) {
-        let text = document.getElementById(searchElement).disabled;
-        return text;
-    };
-
-    function setState(element, state) {
-        document.getElementById(element).disabled=state;
-    };
-
-    function switchState(element) {
-        let elementState = document.getElementById(element).disabled;
-        
-        if (elementState) {
-            document.getElementById(element).disabled=false;
-        } else {
-            document.getElementById(element).disabled=true;
-        }
-    };
-
-    function getInput(element) {
-        let input = document.getElementById(element).value;
-        return input
-    };
-
-    function fillDropDown(element, textArray) {
-        textArray.forEach(text => {
-            const option = document.createElement('option');
-            option.value = text.toLowerCase();
-            option.textContent = text;
-            element.appendChild(option);
-        });
-    };
+function changeElementText(element, result) {
+    document.getElementById(element).innerHTML =  result;
+};
