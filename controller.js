@@ -27,24 +27,18 @@ function updateIsotopeDropdown() {
     reactionButton.disabled = true;
 
     let selectedElement = elementSelect.value;
-    if (selectedElement == "base") {
-        console.log(`Base element selected: ${selectedElement}`);
-        return;
-    }
+    if (selectedElement == "base") return;
 
-    console.log(`Proton Count: ${selectedElement}`);
     let elementObject = findElementObject(selectedElement);
-    console.log(`Element object: ${elementObject}`);
+
     let elementName = atomData[selectedElement-1].elementName;
-    console.log(`Element name: ${elementName}`);
 
     let isotopeArray = elementObject.isotopes
     isotopeArray.forEach(isotope => {
         const option = document.createElement('option');
         option.value = isotope.nucleonCount;
         option.textContent = `${elementName}-${isotope.nucleonCount}`;
-        console.log(`Added option: ${option.textContent}`);
-        elementSelect.appendChild(option);
+        isotopeSelect.appendChild(option);
     });
 
     isotopeSelect.disabled = false;
@@ -58,7 +52,27 @@ function updateDecayDropdown() {
     decaySelect.disabled = true;
     reactionButton.disabled = true;
 
-    if (isotopeSelect.value == "base") return
+    let selectedElement = elementSelect.value;
+    let selectedIsotope = isotopeSelect.value;
+    if (selectedIsotope == "base") return;
+
+    let isotopeObject = findNucleodeObject(selectedElement, selectedIsotope);
+
+    let decayArray = isotopeObject.decay
+    if(decayArray == 'stable') {
+        const option = document.createElement('option');
+        option.value = 'stable';
+        option.textContent = `Stable`;
+        decaySelect.appendChild(option);
+    } else {
+        decayArray.forEach(decay => {
+            const option = document.createElement('option');
+            const type = decay.decayType
+            option.value = type;
+            option.textContent = `${type}`;
+            decaySelect.appendChild(option);
+        });
+    }
 
     decaySelect.disabled = false;
     console.log('You changed the isotope selector');
