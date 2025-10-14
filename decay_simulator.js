@@ -309,8 +309,8 @@ const decayTransformKey = (decayArray) => {
  * @returns {number[]} An array consisting of the new proton count and new nucleon count
  */
 const decayAction = (protonCount, nucleonCount, decayKey) => {
-    protonCount += decayKey[0];
-    nucleonCount += decayKey[1];
+    protonCount = Number(protonCount) + Number(decayKey[0]);
+    nucleonCount = Number(nucleonCount) + Number(decayKey[1]);
 
     return [protonCount, nucleonCount];
 };
