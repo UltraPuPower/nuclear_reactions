@@ -100,14 +100,16 @@ function executeDecayAction() {
     let newIsotopeArray = decayOperation(selectedDecayType, selectedElement, selectedIsotope);
     let elementName = atomData[newIsotopeArray[0]-1].elementName
 
-    localStorage.setItem("latestIsotope", newIsotopeArray);
-    changeElementText("result", `You have created the isotope ${elementName}-${newIsotopeArray[1]}`);
+    localStorage.setItem("testData", `${newIsotopeArray}`);
+    console.log(`Test: ${localStorage.getItem("testData")}`)
+    localStorage.setItem("latestIsotope", `${newIsotopeArray[0]}-${newIsotopeArray[1]}`);
+    changeElementText("result", `${elementName}-${newIsotopeArray[1]}`);
 };
 
 // ========[ Continue decay of new isotope ]========
 continueButton.addEventListener('click', continueReaction())
 function continueReaction() {
-    const isotopeArray = localStorage.getItem("latestIsotope");
+    const isotopeArray = localStorage.getItem("latestIsotope").split('-');
     const protonCount = isotopeArray[0], nucleonCount = isotopeArray[1];
 
     const nucleodeCheck = findNucleodeObject(protonCount, nucleonCount);
