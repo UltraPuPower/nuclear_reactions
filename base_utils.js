@@ -6,10 +6,6 @@
  *  - UltraPuPower1
  */
 
-const buttonTest = document.getElementById("continueReaction");
-buttonTest.addEventListener('click', function() {
-    changeElementText("result", 'Uranium-235')
-});
 
 const buttonTheme = document.getElementById("buttonTheme");
 buttonTheme.addEventListener('click', function() {

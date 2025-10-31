@@ -1,10 +1,14 @@
 import { timePrefixDict, atomData, findElementObject, findNucleodeObject, decayOperation, elementProtonCount } from "./decay_simulator.js";
 
+// ========[ Declare Buttons ]========
 const elementSelect = document.getElementById('element-select');
 const isotopeSelect = document.getElementById('isotope-select');
 const decaySelect = document.getElementById('decay-select');
-const reactionButton = document.getElementById('attemptReaction');
 
+const reactionButton = document.getElementById('attemptReaction');
+const continueButton = document.getElementById("continueReaction");
+
+// ========[ Fill the element dropdown ]========
 atomData.forEach(element => {
     const option = document.createElement('option');
     option.value = element.protonCount;
@@ -12,16 +16,17 @@ atomData.forEach(element => {
     elementSelect.appendChild(option);
 });
 
+// ========[ Disable other dropdowns ]========
 isotopeSelect.disabled = true;
 decaySelect.disabled = true;
 reactionButton.disabled = true;
 
+// ========[ Handle change to element dropdown ]========
 elementSelect.addEventListener('change', updateIsotopeDropdown);
-
 function updateIsotopeDropdown() {
-    isotopeSelect.innerHTML = '<option value="">-- Select Isotope --</option>';
+    isotopeSelect.innerHTML = '<option value="base">-- Select Isotope --</option>';
     isotopeSelect.disabled = true;
-    decaySelect.innerHTML = '<option value="">-- Select Decay Type --</option>';
+    decaySelect.innerHTML = '<option value="base">-- Select Decay Type --</option>';
     decaySelect.disabled = true;
     reactionButton.disabled = true;
 
@@ -43,10 +48,10 @@ function updateIsotopeDropdown() {
     isotopeSelect.disabled = false;
 };
 
+// ========[ Handle change to isotope dropdown ]========
 isotopeSelect.addEventListener('change', updateDecayDropdown);
-
 function updateDecayDropdown() {
-    decaySelect.innerHTML = '<option value="">-- Select Decay Type --</option>';
+    decaySelect.innerHTML = '<option value="base">-- Select Decay Type --</option>';
     decaySelect.disabled = true;
     reactionButton.disabled = true;
 
@@ -75,8 +80,8 @@ function updateDecayDropdown() {
     decaySelect.disabled = false;
 };
 
+// ========[ Handle change to decay dropdown ]========
 decaySelect.addEventListener('change', updateDecayButton);
-
 function updateDecayButton() {
     reactionButton.disabled = true;
 
@@ -85,8 +90,8 @@ function updateDecayButton() {
     reactionButton.disabled = false;
 };
 
+// ========[ Execute decay reaction ]========
 reactionButton.addEventListener('click', executeDecayAction);
-
 function executeDecayAction() {
     let selectedElement = elementSelect.value;
     let selectedIsotope = isotopeSelect.value;
@@ -95,8 +100,26 @@ function executeDecayAction() {
     let newIsotopeArray = decayOperation(selectedDecayType, selectedElement, selectedIsotope);
     let elementName = atomData[newIsotopeArray[0]-1].elementName
 
+    localStorage.setItem("latestIsotope", newIsotopeArray);
     changeElementText("result", `You have created the isotope ${elementName}-${newIsotopeArray[1]}`);
 };
+
+// ========[ Continue decay of new isotope ]========
+continueButton.addEventListener('click', continueReaction())
+function continueReaction() {
+    const isotopeArray = localStorage.getItem("latestIsotope");
+    const protonCount = isotopeArray[0], nucleonCount = isotopeArray[1];
+
+    const nucleodeCheck = findNucleodeObject(protonCount, nucleonCount);
+    if (!nucleodeCheck) {
+        console.log('nucleode not found')
+        return
+    }
+
+    elementSelect.value = protonCount;
+    updateIsotopeDropdown()
+    isotopeSelect.value = nucleonCount;
+}
 
 // Base utils
 function changeElementText(element, result) {
