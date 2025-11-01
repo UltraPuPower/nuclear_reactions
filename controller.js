@@ -131,18 +131,41 @@ function setLatestProduct() {
     localStorage.setItem("continued", true);
 };
 
+// ========[ Update decay history ]========
 function updateDecayHistory(oldIsotope, decayType, newIsotope) {
     const currentHistory = localStorage.getItem("decayHistory");
     const historyAddition = `${oldIsotope}>${decayType}>${newIsotope}`;
     const continued = localStorage.getItem("continued");
-
-    // 92-235>a>90-231|90-231>b->91-231|91-231>b->92-239
-    // input>decayType>output
-    // | is a continued reaction, / is a new reaction chain
-    let newHistory = `${currentHistory}${continued ? '|' : '/'}${historyAddition}`;
+    /**
+     * 92-235>a>90-231|90-231>b->91-231|91-231>b->92-239
+     * input>decayType>output
+     * | is a continued reaction, / is a new reaction chain
+     */
+    if (currentHistory) {
+        let newHistory = `${currentHistory}${continued ? '|' : '/'}${historyAddition}`;
+    } else {
+        let newHistory = historyAddition;
+    }
     localStorage.setItem("decayHistory", newHistory);
-    changeElementText("history", newHistory)
+    updateHistory();
 };
+
+function updateHistory() {
+    const historyData = localStorage.getItem("decayHistory");
+
+    const historyPartArray = historyData.split('/');
+
+    let historyText = '';
+    historyPartArray.forEach(chain => {
+        let reactionArray = chain.split('|')
+        reactionArray.forEach(reaction => {
+            historyText += `${reaction}<br>`
+        });
+        historyText += '<br><br>'
+    });
+
+    changeElementText("history", historyText);
+}
 
 function resetLatestProduct() {
     // localStorage.clear() // Clears complete local storage

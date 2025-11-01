@@ -115,12 +115,16 @@ select:focus, button:focus {
 
 .controllerBox {
     width: 220px;
+    height: 300px;
 }
 
 .resultBox {
     width: 180px;
+    height: 300px;
 }
 
 .historyBox {
     width: 200px;
+    height: 300px;
+    overflow-y: scroll;
 }
