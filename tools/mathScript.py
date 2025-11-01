@@ -4,7 +4,7 @@ def userReturnMenu():
             userCall()
 
 def userCall():
-    print('='*10+'[Main Menu]'+'='*10)
+    print('='*10+'[\u2623 Main Menu \u2623]'+'='*10)
     print('''Pick a tool you want to use
 [1] - Odd rebalancer [Adjusts non full odds to be full]''')
     userChoice = input()

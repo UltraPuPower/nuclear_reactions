@@ -6,23 +6,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Nuclear Reaction Calculator</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/icon.ico">
 </head>
 
 <body>
     <div class="banner">
         <img id="logo" src="assets/name_clean.jpg" width="500" height="70" alt="UltraPuPower1">
         <h1 id="title">Nuclear Reactions</h1>
+        <img id="icon" src="assets/biohazard_icon.png" width="100" height="100" alt="Biohazard_icon">
     </div>
-    <p>This is some example text on the page.</p>
-    <button id="nc_reaction_test">Test Nuclear reaction</button>
-    <p id = "result"></p>
-    <!-- Slider example: <input onchange="changeRGB()" oninput="changeRGB()" type="range" id="slideGreen" name="slideGreen" value="99" min="0" max="255"> -->
-    <script src="decay_simulator.js"></script>
-    <div style="padding-bottom:2000px">
-    <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-    <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-    <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
+    <div>
+        <button id="buttonTheme" type="button" aria-label="Change to light theme">Change to light theme</button>
     </div>
+    <div class="box">
+        <div class="controllerBox">
+            <p id="textEnterData">Enter your data below</p>
+            <div class="interactable">
+                <select style='width: 215px' id="element-select">
+                    <option value="base">-- Select Element --</option>
+                </select>
+            </div>
+            <div class="interactable">
+                <select style='width: 215px' id="isotope-select">
+                    <option value="base">-- Select Isotope --</option>
+                </select>
+            </div>
+            <div class="interactable">
+                <select style='width: 215px' id="decay-select">
+                    <option value="base">-- Select Decay Mode --</option>
+                </select>
+            </div>
+            <div class="interactable">
+                <button style='width: 215px' id="attemptReaction">Test nuclear reaction</button>
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="resultBox">
+            <p style='white-space: nowrap'>Your reaction produced:</p>
+            <p id = "result">Air or something</p>
+            <div class="interactable">
+                <button id="continueReaction" style='white-space: nowrap'>Continue the nuclear reaction</button>
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="historyBox">
+            <p>History:</p>
+            <p id = "history"> </p>
+        </div>
+    </div>
+    <script type="text/javascript" src="base_utils.js"></script>
+    <script type="module" src="controller.js"></script>
+
+    <!-- <input type="text" id="elementInput" style='width: 110px' placeholder="Enter an element"/>
+    <input type="text" id="isotopeInput" style='width: 110px' placeholder="Enter an isotope"/>
+    <input type="text" id="decayTypeInput" style='width: 120px' placeholder="Enter a decay type"/> -->
+
+    <!-- <div style="padding-bottom:2000px">
+    <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
+    <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
+    <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
+    </div> -->
 
 </body>
 

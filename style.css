@@ -1,6 +1,62 @@
+[data-theme="light"] {
+    --colorBackground: #7ce0b7;
+    --colorBannerText: #113040;
+    --colorNormalText: #000000;
+    --colorHighlights: #1E5A78;
+    --colorBoxAccents: #4cd49b;
+    --colorBoxShadows: #2cb77d;
+}
+
+[data-theme="dark"] {
+    --colorBackground: #332B2B;
+    --colorBannerText: #2dd733;
+    --colorNormalText: #ffffff;
+    --colorHighlights: #4CAF50;
+    --colorBoxAccents: #1e1e1e;
+    --colorBoxShadows: #000000;
+}
+
 body {
-    background-color: #332B2B;
-    padding-top: 80px
+    background-color: var(--colorBackground);
+    padding-top: 80px;
+}
+ 
+h1 {
+    font-family: Arial;
+    color: var(--colorBannerText);
+    margin-bottom: 0px;
+}
+
+p {
+    color: var(--colorNormalText);
+    font-family: Arial, Helvetica, sans-serif;
+    white-space: pre-line;
+}
+
+button {
+    padding: 10px 0;
+    cursor: pointer;
+    border-radius: 4px;
+    color: var(--colorNormalText);
+    background-color: var(--colorBackground);
+    border: 0.15rem solid var(--colorHighlights);
+}
+
+select {
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+    color: var(--colorNormalText);
+    background-color: var(--colorBackground);
+    border: 0.15rem solid var(--colorHighlights);
+}
+
+.interactable {
+    padding: 10px 0;
+}
+
+select:focus, button:focus {
+    border-color: var(--colorHighlights);
 }
 
 .banner {
@@ -9,7 +65,7 @@ body {
     left: 0;
     width: 100%;
     height: 80px;
-    background-color: #332B2B;
+    background-color: var(--colorBackground);
     z-index: 1000;
     text-align: center;
 }
@@ -21,27 +77,54 @@ body {
 }
 
 #title {
+    text-align: center;
     margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
- 
-h1 {
-    font-family: Arial;
-    color: #4CAF50;
-    text-align: center;
-    margin-bottom: 0px;
-}
- 
-p {
-    color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
+
+#icon {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 97.25%;
+    transform: translate(-50%, -50%);
 }
 
-/* This class will be added or removed by JavaScript */
-/* .dark-mode {
-    background-color: #222;
-    color: #eee;
-} */
+#buttonTheme {
+    width: 58px;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    border: 0.25rem solid var(--colorHighlights);
+}
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--colorBoxAccents);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--colorBoxShadows);
+    float: left;
+    margin-right: 20px;
+}
+
+.controllerBox {
+    width: 220px;
+    height: 300px;
+}
+
+.resultBox {
+    width: 180px;
+    height: 300px;
+}
+
+.historyBox {
+    width: 200px;
+    height: 300px;
+    overflow-y: scroll;
+}
