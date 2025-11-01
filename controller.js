@@ -141,10 +141,11 @@ function updateDecayHistory(oldIsotope, decayType, newIsotope) {
      * input>decayType>output
      * | is a continued reaction, / is a new reaction chain
      */
+    let newHistory = ''
     if (currentHistory) {
-        let newHistory = `${currentHistory}${continued ? '|' : '/'}${historyAddition}`;
+        newHistory += `${currentHistory}${continued ? '|' : '/'}${historyAddition}`;
     } else {
-        let newHistory = historyAddition;
+        newHistory += historyAddition;
     }
     localStorage.setItem("decayHistory", newHistory);
     updateHistory();
