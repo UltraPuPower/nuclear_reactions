@@ -46,6 +46,7 @@ function updateIsotopeDropdown() {
     });
 
     isotopeSelect.disabled = false;
+    localStorage.setItem("continued", false)
 };
 
 // ========[ Handle change to isotope dropdown ]========
@@ -78,6 +79,7 @@ function updateDecayDropdown() {
     }
 
     decaySelect.disabled = false;
+    localStorage.setItem("continued", false)
 };
 
 // ========[ Handle change to decay dropdown ]========
@@ -100,35 +102,54 @@ function executeDecayAction() {
     let newIsotopeArray = decayOperation(selectedDecayType, selectedElement, selectedIsotope);
     let elementName = atomData[newIsotopeArray[0]-1].elementName
 
-    localStorage.setItem("testData", `${newIsotopeArray}`);
-    console.log(`Test: ${localStorage.getItem("testData")}`)
     localStorage.setItem("latestIsotope", `${newIsotopeArray[0]}-${newIsotopeArray[1]}`);
     changeElementText("result", `${elementName}-${newIsotopeArray[1]}`);
 };
 
 // ========[ Continue decay of new isotope ]========
-continueButton.addEventListener('click', continueReaction)
-function continueReaction() {
-    const isotopeArray = localStorage.getItem("latestIsotope").split('-');
-    console.log(`isotopeArray: ${isotopeArray}`)
+continueButton.addEventListener('click', setLatestProduct)
+function setLatestProduct() {
+    const latestProduct = localStorage.getItem("latestIsotope")
+    if (!latestProduct) return
+
+    const isotopeArray = latestProduct.split('-');
     const protonCount = isotopeArray[0], nucleonCount = isotopeArray[1];
-    console.log(`protonCount: ${protonCount}, nucleonCount: ${nucleonCount}`)
 
     const nucleodeCheck = findNucleodeObject(protonCount, nucleonCount);
     if (!nucleodeCheck) {
         console.log('nucleode not found')
         return
-    } else {
-        console.log('nucleode found')
     }
 
     elementSelect.value = protonCount;
-    updateIsotopeDropdown()
+    updateIsotopeDropdown();
     isotopeSelect.value = nucleonCount;
-    console.log('updated dropdown')
-}
+    updateDecayDropdown();
+
+    localStorage.setItem("continued", true);
+};
+
+function updateDecayHistory(oldIsotope, decayType, newIsotope) {
+    const currentHistory = localStorage.getItem("decayHistory");
+    const historyAddition = `${oldIsotope}>${decayType}>${newIsotope}`;
+    const continued = localStorage.getItem("continued");
+
+    // 92-235>a>90-231|90-231>b->91-231|91-231>b->92-239
+    // input>decayType>output
+    // | is a continued reaction, / is a new reaction chain
+    let newHistory = `${currentHistory}${continued ? '|' : '/'}${historyAddition}`;
+    localStorage.setItem("decayHistory", newHistory);
+    changeElementText("history", newHistory)
+};
+
+function resetLatestProduct() {
+    // localStorage.clear() // Clears complete local storage
+    localStorage.removeItem("latestIsotope");
+};
 
 // Base utils
 function changeElementText(element, result) {
     document.getElementById(element).innerHTML =  result;
 };
+
+setLatestProduct()
