@@ -107,20 +107,25 @@ function executeDecayAction() {
 };
 
 // ========[ Continue decay of new isotope ]========
-continueButton.addEventListener('click', continueReaction())
+continueButton.addEventListener('click', continueReaction)
 function continueReaction() {
     const isotopeArray = localStorage.getItem("latestIsotope").split('-');
+    console.log(`isotopeArray: ${isotopeArray}`)
     const protonCount = isotopeArray[0], nucleonCount = isotopeArray[1];
+    console.log(`protonCount: ${protonCount}, nucleonCount: ${nucleonCount}`)
 
     const nucleodeCheck = findNucleodeObject(protonCount, nucleonCount);
     if (!nucleodeCheck) {
         console.log('nucleode not found')
         return
+    } else {
+        console.log('nucleode found')
     }
 
     elementSelect.value = protonCount;
     updateIsotopeDropdown()
     isotopeSelect.value = nucleonCount;
+    console.log('updated dropdown')
 }
 
 // Base utils
