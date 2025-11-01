@@ -143,8 +143,7 @@ function updateDecayHistory(oldIsotope, decayType, newIsotope) {
      */
     let newHistory = ''
     if (currentHistory) {
-        newHistory += `${currentHistory}${continued ? '|' : '/'}${historyAddition}`;
-        console.log(`continued has the value "${continued}" and gives a ${continued ? 'true' : 'false'} in an if`);
+        newHistory += `${currentHistory}${continued == "true" ? '|' : '/'}${historyAddition}`;
     } else {
         newHistory += historyAddition;
     }
