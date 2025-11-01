@@ -102,6 +102,8 @@ function executeDecayAction() {
     let newIsotopeArray = decayOperation(selectedDecayType, selectedElement, selectedIsotope);
     let elementName = atomData[newIsotopeArray[0]-1].elementName
 
+    updateDecayHistory(`${selectedElement}-${selectedIsotope}`, selectedDecayType, `${newIsotopeArray[0]}-${newIsotopeArray[1]}`)
+
     localStorage.setItem("latestIsotope", `${newIsotopeArray[0]}-${newIsotopeArray[1]}`);
     changeElementText("result", `${elementName}-${newIsotopeArray[1]}`);
 };
