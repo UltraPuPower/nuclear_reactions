@@ -7,7 +7,7 @@ const fissionSandboxNucleonEntry = document.getElementById('fissionSandboxNucleo
 const fissionSandboxDecayEntry = document.getElementById('fissionSandboxDecayEntry');
 
 const fissionSandboxReactionButton = document.getElementById('attemptSandboxFissionReaction');
-const fissionSandboxContinueButton = document.getElementById('attemptSandboxFissionReaction');
+const fissionSandboxContinueButton = document.getElementById('continueSandboxFissionReaction');
 
 // ========[ Fill the element dropdowns ]========
 atomData.forEach(element => {
