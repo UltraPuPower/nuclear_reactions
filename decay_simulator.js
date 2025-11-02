@@ -287,6 +287,7 @@ const decayTypeHarvester = (decayTypeString) => {
     
     decayTypeArray.forEach(decayType => {
         let harvestArray = decayType.match(/([0-9])?([abdenpt][+-]?)/);
+        console.log(`DecayData => decayTypeString: ${decayTypeString}; decayTypeArray: ${decayTypeArray}; decayType: ${decayType}; harvestArray: ${harvestArray}`)
         harvestArray.shift();
         let transformArray = decayTransformKey(harvestArray);
         protonchange += transformArray[0]

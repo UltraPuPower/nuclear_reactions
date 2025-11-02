@@ -41,12 +41,13 @@ function executeDecayAction() {
 
     if(!/[0-9]+/.test(nucleonCountEntry)) {
         changeElementText("fissionSandboxResult", 'Invalid nucleode count');
-    }// /([0-9])?([abdenpt][+-]?)/
+    }
 
     const decayEntryArray = decayEntry.split(',');
     decayEntryArray.forEach(entry => {
         if(!/([0-9])?([abdenpt][+-]?)/.test(entry)) {
             changeElementText("fissionSandboxResult", 'Invalid decay type');
+            console.log(`Invalid Decay type: ${entry} out of ${decayEntry}`)
         }
     });
 
