@@ -6,20 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Nuclear Reaction Calculator</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/icon.ico">
 </head>
 
 <body>
     <div class="banner">
         <img id="logo" src="assets/name_clean.jpg" width="500" height="70" alt="UltraPuPower1">
         <h1 id="title">Nuclear Reactions</h1>
-    </div>
-    <div>
+        <img id="icon" src="assets/biohazard_icon.png" width="100" height="100" alt="Biohazard_icon">
         <button id="buttonTheme" type="button" aria-label="Change to light theme">Change to light theme</button>
     </div>
     <h1>Nuclear decay calculator</h1>
     <div class="box">
         <div class="fissionControllerBox">
-            <p>Enter your data below</p>
+            <p class="title">Enter your data below</p>
             <div class="interactable">
                 <select style='width: 215px' id="fissionElementSelect">
                     <option value="base">-- Select Element --</option>
@@ -42,6 +42,7 @@
     </div>
     <div class="box">
         <div class="fissionResultBox">
+            <p class="title">Result</p>
             <p>Your reaction produced:</p>
             <p id = "fissionResult">Air or something</p>
             <div class="interactable">
@@ -54,21 +55,21 @@
     </div>
     <div class="box">
         <div class="fissionHistoryBox">
-            <p>History:</p>
+            <p class="title">History:</p>
             <p id = "fissionHistory"> </p>
         </div>
     </div>
     <h1>Nuclear decay sandbox</h1>
     <div class="box" style="clear: left; width: 720px;">
         <div class="fissionSandboxController">
-            <p>Enter your data below</p>
+            <p class="title">Enter your data below</p>
             <div class="interactable">
                 <select style='width: 215px' id="fissionSandboxElementSelect">
                     <option value="base">-- Select Element --</option>
                 </select>
             </div>
             <div class="interactable">
-                <input type="text" pattern="[^0-9]+" style='width: 200px; padding: 10px 5px;' id="fissionSandboxIsotopeEntry" placeholder="Enter an isotope"/>
+                <input type="text" pattern="[^0-9]+" style='width: 200px; padding: 10px 5px;' id="fissionSandboxIsotopeEntry" placeholder="Enter a nucleode count"/>
             </div>
             <div class="interactable">
                 <input type="text" style='width: 200px; padding: 10px 5px;' id="fissionSandboxDecayEntry" placeholder="Enter a decay type"/>
@@ -77,11 +78,31 @@
                 <button style='width: 215px' id="attemptSandboxFissionReaction">Test nuclear reaction</button>
             </div>
         </div>
+        <div style="margin-right: 20px">
+            <p class="title">Legend</p>
+            <ul>
+            <li>Alpha Decay (a)</li>
+            <li>Beta minus Decay (b-)</li>
+            <li>Beta plus Decay (b+)</li>
+            <li>Electron Capture (e)</li>
+            <li>Proton Emission (p)</li>
+            <li>Neutron Emission (n)</li>
+            <li>Deuteron Emission (d)</li>
+            <li>Triton Emission (t)</li>
+            </ul>
+            <p>Format decay types like so<br>2n,6b-,5t</p>
+        </div>
+        <div>
+            <p class="title">Result</p>
+            <p>Your reaction produced:</p>
+            <p id="fissionSandboxResult">Air or something</p>
+        </div>
     </div>
     
     <script type="text/javascript" src="utils/theme_switcher.js"></script>
     <script type="text/javascript" src="utils/type_restriction.js"></script>
-    <script type="module" src="controller.js"></script>
+    <script type="module" src="fissionCalculator_controller.js"></script>
+    <script type="module" src="fissionSandbox_controller.js"></script>
 
 </body>
 

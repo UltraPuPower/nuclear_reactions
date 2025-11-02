@@ -33,6 +33,12 @@ p {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+ul {
+    color: var(--colorNormalText);
+    font-family: Arial, Helvetica, sans-serif;
+    list-style-type: square;
+}
+
 button, select, input {
     padding: 10px 0;
     cursor: pointer;
@@ -45,6 +51,11 @@ button, select, input {
 select {
     padding: 10px;
     font-size: 16px;
+}
+
+.title {
+    color: var(--colorHighlights);
+    font-size: 20px;
 }
 
 .interactable {
@@ -93,6 +104,9 @@ select:focus, button:focus {
     width: 58px;
     font-size: 20px;
     font-weight: bold;
+    position: absolute;
+    top: 25%;
+    left: 91%;
     padding: 0.5rem 1rem;
     border-radius: 2rem;
     border: 0.25rem solid var(--colorHighlights);

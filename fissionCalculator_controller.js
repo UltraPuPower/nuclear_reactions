@@ -10,7 +10,7 @@ const fissionReactionButton = document.getElementById('attemptFissionReaction');
 const fissionContinueButton = document.getElementById("continueFissionReaction");
 const fissionClearHistoryButton = document.getElementById("clearFissionHistory");
 
-// ========[ Fill the element dropdown ]========
+// ========[ Fill the element dropdowns ]========
 atomData.forEach(element => {
     const option = document.createElement('option');
     option.value = element.protonCount;
@@ -18,7 +18,7 @@ atomData.forEach(element => {
     fissionElementSelect.appendChild(option);
 });
 
-// ========[ Disable other dropdowns ]========
+// ========[ Disable other input elements ]========
 fissionIsotopeSelect.disabled = true;
 fissionDecaySelect.disabled = true;
 fissionReactionButton.disabled = true;
@@ -48,7 +48,7 @@ function updateIsotopeDropdown() {
     });
 
     fissionIsotopeSelect.disabled = false;
-    localStorage.setItem("continued", false)
+    localStorage.setItem("continuedFission", false)
 };
 
 // ========[ Handle change to isotope dropdown ]========
@@ -81,7 +81,7 @@ function updateDecayDropdown() {
     }
 
     fissionDecaySelect.disabled = false;
-    localStorage.setItem("continued", false)
+    localStorage.setItem("continuedFission", false)
 };
 
 // ========[ Handle change to decay dropdown ]========
@@ -106,14 +106,14 @@ function executeDecayAction() {
 
     updateDecayHistory(`${selectedElement}-${selectedIsotope}`, selectedDecayType, `${newIsotopeArray[0]}-${newIsotopeArray[1]}`)
 
-    localStorage.setItem("latestIsotope", `${newIsotopeArray[0]}-${newIsotopeArray[1]}`);
+    localStorage.setItem("latestFissionCalculatorIsotope", `${newIsotopeArray[0]}-${newIsotopeArray[1]}`);
     changeElementText("fissionResult", `${elementName}-${newIsotopeArray[1]}`);
 };
 
 // ========[ Continue decay of new isotope ]========
 fissionContinueButton.addEventListener('click', setLatestProduct)
 function setLatestProduct() {
-    const latestProduct = localStorage.getItem("latestIsotope")
+    const latestProduct = localStorage.getItem("latestFissionCalculatorIsotope")
     if (!latestProduct) return
 
     const isotopeArray = latestProduct.split('-');
@@ -130,14 +130,14 @@ function setLatestProduct() {
     fissionIsotopeSelect.value = nucleonCount;
     updateDecayDropdown();
 
-    localStorage.setItem("continued", true);
+    localStorage.setItem("continuedFission", true);
 };
 
 // ========[ decay history ]========
 function updateDecayHistory(oldIsotope, decayType, newIsotope) {
-    const currentHistory = localStorage.getItem("decayHistory");
+    const currentHistory = localStorage.getItem("fissionCalculatorHistory");
     const historyAddition = `${oldIsotope}>${decayType}>${newIsotope}`;
-    const continued = localStorage.getItem("continued");
+    const continued = localStorage.getItem("continuedFission");
     /**
      * 92-235>a>90-231|90-231>b->91-231|91-231>b->92-239
      * input>decayType>output
@@ -149,12 +149,12 @@ function updateDecayHistory(oldIsotope, decayType, newIsotope) {
     } else {
         newHistory += historyAddition;
     }
-    localStorage.setItem("decayHistory", newHistory);
+    localStorage.setItem("fissionCalculatorHistory", newHistory);
     updateHistory();
 };
 
 function updateHistory() {
-    const historyData = localStorage.getItem("decayHistory");
+    const historyData = localStorage.getItem("fissionCalculatorHistory");
 
     const historyPartArray = historyData.split('/');
 
@@ -167,14 +167,14 @@ function updateHistory() {
         historyText += '<br><br>'
     });
 
-    changeElementText("fissionHistory", historyText);
+    changeElementText("fissionCalculatorHistory", historyText);
 };
 
 fissionClearHistoryButton.addEventListener('click', resetHistory);
 function resetHistory() {
     // localStorage.clear() // Clears complete local storage
-    localStorage.removeItem("latestIsotope");
-    localStorage.removeItem("decayHistory");
+    localStorage.removeItem("latestFissionCalculatorIsotope");
+    localStorage.removeItem("fissionCalculatorHistory");
 };
 
 setLatestProduct()

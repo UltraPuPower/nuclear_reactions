@@ -242,19 +242,6 @@ const findNucleodeObject = (protonCount, nucleonCount) => {
 };
 
 /**
- * Harvests the decay type from the isotopeList form
- * @param {string} decayTypeString - Type of decay ('a', 'b-', 'b+', 'e')
- * @returns {string[]} Returns an array with primary and secondary decay type and multiplier
- */
-const decayTypeHarvester = (decayTypeString) => {
-
-    let harvestArray = decayTypeString.match(/([0-9])?([abdenpt][+-]?)+,?([0-9])?([abdenpt][+-]?)?/);
-    harvestArray.shift();
-
-    return harvestArray
-};
-
-/**
  * Multiplies all values in an array
  * @param {string[]} array - An array consisting of only numbers
  * @param {number} multiplier - The multiplier that needs to be applied to the array
@@ -271,17 +258,14 @@ const arrayMultiplier = (array, multiplier) => {
 
 /**
  * Turns a decay type array into an array detailing the change of protons and nucleons
- * @param {string[]} decayArray - An array with primary and secondary decay information as supplied by decayTypeHarvester() 
+ * @param {string[]} decayArray - An array with decay type and decay multiplier
  * @returns {string[]}
  */
 const decayTransformKey = (decayArray) => {
     const mainDecayMultiplier = decayArray[0];
     const mainDecayType = decayArray[1];
-    const secondaryDecayMultiplier = decayArray[2];
-    const secondaryDecayType = decayArray[3];
 
     let mainDecayArray = [];
-    let secondaryDecayArray = [];
     let transformKey = [];
 
     mainDecayArray = decayTypeDict[mainDecayType];
@@ -289,16 +273,27 @@ const decayTransformKey = (decayArray) => {
 
     transformKey = mainDecayArray;
 
-    secondaryDecayType ? secondaryDecayArray = decayTypeDict[secondaryDecayType] : false;
-    if (secondaryDecayType) {
-        secondaryDecayMultiplier ? secondaryDecayArray = arrayMultiplier(secondaryDecayArray, secondaryDecayMultiplier) : secondaryDecayArray;
-
-        for (let i = 0; i < secondaryDecayArray.length; i++) {
-            transformKey[i] = secondaryDecayArray[i] + transformKey[i]
-        }
-    }
-
     return transformKey
+};
+
+/**
+ * Harvests the decay type from the isotopeList form
+ * @param {string} decayTypeString - Type of decay ('a', 'b-', 'b+', 'e')
+ * @returns {string[]} Returns an array proton and nucleon change values
+ */
+const decayTypeHarvester = (decayTypeString) => {
+    const decayTypeArray = decayTypeString.split(',')
+    let protonchange = 0, nucleonChange = 0;
+    
+    decayTypeArray.forEach(decayType => {
+        let harvestArray = decayType.match(/([0-9])?([abdenpt][+-]?)/);
+        harvestArray.shift();
+        let transformArray = decayTransformKey(harvestArray);
+        protonchange += transformArray[0]
+        nucleonChange += transformArray[1]
+    })
+
+    return [protonchange, nucleonChange]
 };
 
 /**
@@ -323,9 +318,7 @@ const decayAction = (protonCount, nucleonCount, decayKey) => {
  * @returns {number[]} An array consisting of the new proton count and new nucleon count
  */
 const decayOperation = (decayType, protonCount, nucleonCount) => {
-    const decayArray = decayTypeHarvester(decayType);
-    
-    const transformArray = decayTransformKey(decayArray);
+    const transformArray = decayTypeHarvester(decayType);
 
     const newIsotopeValue = decayAction(protonCount, nucleonCount, transformArray);
     const newProtonCount = newIsotopeValue[0];
