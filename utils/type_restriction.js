@@ -1,5 +1,5 @@
 // ========[ Sandbox isotope input ]========
-const fissionSandboxIsotopeEntryButton = document.getElementById('fissionSandboxIsotopeEntry');
+const fissionSandboxIsotopeEntryButton = document.getElementById('fissionSandboxNucleonEntry');
 fissionSandboxIsotopeEntryButton.addEventListener('keydown', function(event) {
     if(event.ctrlKey || event.altKey || typeof event.key !== 'string' || event.key.length !== 1) return;
     
