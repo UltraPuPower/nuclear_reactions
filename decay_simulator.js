@@ -29,14 +29,14 @@ import isotopeList from "./isotopeData.js"
 
 /*
  * Decay Types:
- * a    - Alpha decay: Loss of He-4 nucleus (p -= 2, n -= 4)
- * b-   - Beta minus: Neutron → proton conversion (p += 1, n -= 1)
- * b+   - Beta plus: Proton → neutron conversion (p -= 1, n += 1)
- * e    - Electron capture: Similar to b+, with gamma emission due to merger of a positron and an electron
- * p    - Proton: Emits a proton from the core (p -= 1, n -= 1)
- * n    - Neutron: Emits a neutron from the core (p, n -= 1)
- * d    - Deuteron: Emission of a hydrogen-2 nucleus (p -= 1, n -= 2)
- * t    - Triton: Emission of a hydrogen-3 nucleus (p -= 1, n -= 3)
+ * a    - Alpha decay:          Loss of He-4 nucleus                                (p -= 2, n -= 4)
+ * b-   - Beta minus decay:     Neutron → proton conversion                         (p += 1, n -= 1)
+ * b+   - Beta plus decay:      Proton → neutron conversion                         (p -= 1, n += 1)
+ * e    - Electron capture:     Similar to b+, with gamma emission due to merger of a positron and an electron
+ * p    - Proton emission:      Emits a proton from the core                        (p -= 1, n -= 1)
+ * n    - Neutron emission:     Emits a neutron from the core                       (p, n -= 1)
+ * d    - Deuteron emission:    Emission of a hydrogen-2 nucleus                    (p -= 1, n -= 2)
+ * t    - Triton emission:      Emission of a hydrogen-3 nucleus                    (p -= 1, n -= 3)
  * Combinations:
  * 2e   - Double Electron Capture
  * 2n   - Double Neutron
@@ -205,9 +205,9 @@ const timePrefixDict = {
 /**
  * Transforms a decay type into an array that provides values of changed proton and nucleon values
  * @param {string} decayType - A valid type of decay
- * @returns {number[]} Proton and nucleon change of submitted decay type
+ * @returns {number[]} [Proton change, nucleon change] of submitted decay type
  */
-const decayTypeDict = {// [change protons, change nucleons]
+const decayTypeDict = {
     'b-': [1, -1],
     'b+': [-1, 1],
     'a': [-2, -4],
