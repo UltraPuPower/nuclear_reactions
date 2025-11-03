@@ -270,6 +270,7 @@ const decayTransformKey = (decayArray) => {
     let transformKey = [];
 
     mainDecayArray = decayTypeDict[mainDecayType];
+    console.log(`mainDecayArray: "${mainDecayArray}"`);
     mainDecayMultiplier ? mainDecayArray = arrayMultiplier(mainDecayArray, mainDecayMultiplier) : mainDecayArray;
     console.log(`mainDecayArray: "${mainDecayArray}"`);
 
