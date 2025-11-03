@@ -266,10 +266,9 @@ const decayTransformKey = (decayArray) => {
     let mainDecayType = decayArray[1];
     console.log(`mainDecayMultiplier: "${mainDecayMultiplier}"; mainDecayType: "${mainDecayType}"`);
 
-    let mainDecayArray = [];
+    let mainDecayArray = decayTypeDict[mainDecayType];
     let transformKey = [];
 
-    mainDecayArray = decayTypeDict[mainDecayType];
     console.log(`mainDecayArray: "${mainDecayArray}"`);
     mainDecayMultiplier ? transformKey = arrayMultiplier(mainDecayArray, mainDecayMultiplier) : transformKey = mainDecayArray;
     console.log(`mainDecayArray: "${mainDecayArray}"`);
@@ -331,6 +330,8 @@ const decayOperation = (decayType, protonCount, nucleonCount) => {
     console.log(`newIsotopeValue: "${newIsotopeValue}";`);
     const newProtonCount = newIsotopeValue[0];
     const newNucleonCount = newIsotopeValue[1];
+
+    console.log(`decayTypeDict: "${decayTypeDict}";`);
 
     return [newProtonCount, newNucleonCount]
 };
