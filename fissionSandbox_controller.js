@@ -48,9 +48,10 @@ function executeDecayAction() {
     decayEntryArray.forEach(entry => {
         if(!/([0-9])?([abdenpt][+-]?)/.test(entry)) {
             changeElementText("fissionSandboxResult", 'Invalid decay type');
-            console.log(`Invalid Decay type: "${entry}" out of "${decayEntry}"`)
         }
     });
+    
+    console.log(`nucleonCountEntry: "${nucleonCountEntry}"; decayEntry: "${decayEntry}"`);
 
     const newIsotopeArray = decayOperation(decayEntry, selectedElement, nucleonCountEntry);
     const protonCount = newIsotopeArray[0]

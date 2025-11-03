@@ -284,11 +284,13 @@ const decayTransformKey = (decayArray) => {
 const decayTypeHarvester = (decayTypeString) => {
     const decayTypeArray = decayTypeString.split(',')
     let protonchange = 0, nucleonChange = 0;
+    console.log(`decayTypeArray: "${decayTypeArray}"; protonchange: "${protonchange}"; nucleonChange: "${nucleonChange}"`);
     
     decayTypeArray.forEach(decayType => {
         let harvestArray = decayType.match(/([0-9])?([abdenpt][+-]?)/);
         harvestArray.shift();
         let transformArray = decayTransformKey(harvestArray);
+        console.log(`harvestArray: "${harvestArray}"; transformArray: "${transformArray}"`);
         protonchange += transformArray[0]
         nucleonChange += transformArray[1]
     })
@@ -319,9 +321,13 @@ const decayAction = (protonCount, nucleonCount, decayKey) => {
  * @returns {number[]} An array consisting of the new proton count and new nucleon count
  */
 const decayOperation = (decayType, protonCount, nucleonCount) => {
+    console.log(`decayType: "${decayType}"; protonCount: "${protonCount}"; nucleonCount: "${nucleonCount}"`);
+
     const transformArray = decayTypeHarvester(decayType);
+    console.log(`transformArray: "${transformArray}";`);
 
     const newIsotopeValue = decayAction(protonCount, nucleonCount, transformArray);
+    console.log(`transformArray: "${newIsotopeValue}";`);
     const newProtonCount = newIsotopeValue[0];
     const newNucleonCount = newIsotopeValue[1];
 
