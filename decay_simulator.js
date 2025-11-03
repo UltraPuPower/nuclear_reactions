@@ -30,8 +30,8 @@ import isotopeList from "./isotopeData.js"
 /*
  * Decay Types:
  * a    - Alpha decay:          Loss of He-4 nucleus                                (p -= 2, n -= 4)
- * b-   - Beta minus decay:     Neutron → proton conversion                         (p += 1, n -= 1)
- * b+   - Beta plus decay:      Proton → neutron conversion                         (p -= 1, n += 1)
+ * b-   - Beta minus decay:     Neutron → proton conversion                         (p += 1, n)
+ * b+   - Beta plus decay:      Proton → neutron conversion                         (p -= 1, n)
  * e    - Electron capture:     Similar to b+, with gamma emission due to merger of a positron and an electron
  * p    - Proton emission:      Emits a proton from the core                        (p -= 1, n -= 1)
  * n    - Neutron emission:     Emits a neutron from the core                       (p, n -= 1)
@@ -208,8 +208,8 @@ const timePrefixDict = {
  * @returns {number[]} [Proton change, nucleon change] of submitted decay type
  */
 const decayTypeDict = {
-    'b-': [1, -1],
-    'b+': [-1, 1],
+    'b-': [1, 0],
+    'b+': [-1, 0],
     'a': [-2, -4],
     'p': [-1, -1],
     'n': [0, -1],
@@ -285,15 +285,18 @@ const decayTypeHarvester = (decayTypeString) => {
     const decayTypeArray = decayTypeString.split(',')
     let protonchange = 0, nucleonChange = 0;
     
+    console.log(`DecayData => decayTypeString: ${decayTypeString}; decayTypeArray: ${decayTypeArray}`)
     decayTypeArray.forEach(decayType => {
         let harvestArray = decayType.match(/([0-9])?([abdenpt][+-]?)/);
-        console.log(`DecayData => decayTypeString: ${decayTypeString}; decayTypeArray: ${decayTypeArray}; decayType: ${decayType}; harvestArray: ${harvestArray}`)
         harvestArray.shift();
+        console.log(`   decayType: ${decayType}; harvestArray: ${harvestArray}`)
         let transformArray = decayTransformKey(harvestArray);
+        console.log(`   transformArray => "${transformArray}"`)
         protonchange += transformArray[0]
         nucleonChange += transformArray[1]
     })
 
+    console.log(`Change => protonchange: "${protonchange}"; nucleonChange: "${nucleonChange}"`)
     return [protonchange, nucleonChange]
 };
 
