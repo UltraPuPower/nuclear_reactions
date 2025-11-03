@@ -36,18 +36,19 @@ function updateSandboxEntries() {
 fissionSandboxReactionButton.addEventListener('click', executeDecayAction);
 function executeDecayAction() {
     const selectedElement = fissionSandboxElementSelect.value;
-    const nucleonCountEntry = fissionSandboxNucleonEntry.innerHTML;
-    const decayEntry = fissionSandboxDecayEntry.innerHTML;
+    const nucleonCountEntry = fissionSandboxNucleonEntry.value;
+    const decayEntry = fissionSandboxDecayEntry.value;
 
     if(!/[0-9]+/.test(nucleonCountEntry)) {
         changeElementText("fissionSandboxResult", 'Invalid nucleode count');
     }
 
     const decayEntryArray = decayEntry.split(',');
+
     decayEntryArray.forEach(entry => {
         if(!/([0-9])?([abdenpt][+-]?)/.test(entry)) {
             changeElementText("fissionSandboxResult", 'Invalid decay type');
-            console.log(`Invalid Decay type: ${entry} out of ${decayEntry}`)
+            console.log(`Invalid Decay type: "${entry}" out of "${decayEntry}"`)
         }
     });
 
@@ -69,7 +70,7 @@ function setLatestProduct() {
 
     if (protonCount <= 118) {
         fissionSandboxElementSelect.value = protonCount;
-        fissionSandboxNucleonEntry.innerHTML = nucleonCount;
+        fissionSandboxNucleonEntry.value = nucleonCount;
     } else {
         changeElementText("fissionSandboxResult", 'An unknown element');
     }
