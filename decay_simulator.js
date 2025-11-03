@@ -248,9 +248,7 @@ const findNucleodeObject = (protonCount, nucleonCount) => {
  * @returns {string[]}
  */
 const arrayMultiplier = (array, multiplier) => {
-    console.log(`array: "${array}"; multiplier: "${multiplier}"`);
     const newArray = array.map(val => val * multiplier);
-    console.log(`array: "${newArray}"`);
     return newArray
 };
 
@@ -262,14 +260,11 @@ const arrayMultiplier = (array, multiplier) => {
 const decayTransformKey = (decayArray) => {
     let mainDecayMultiplier = decayArray[0];
     let mainDecayType = decayArray[1];
-    console.log(`mainDecayMultiplier: "${mainDecayMultiplier}"; mainDecayType: "${mainDecayType}"`);
 
     let mainDecayArray = decayTypeDict[mainDecayType];
     let transformKey = [];
 
-    console.log(`mainDecayArray: "${mainDecayArray}"`);
     mainDecayMultiplier ? transformKey = arrayMultiplier(mainDecayArray, mainDecayMultiplier) : transformKey = mainDecayArray;
-    console.log(`mainDecayArray: "${mainDecayArray}"`);
 
     return transformKey
 };
@@ -282,18 +277,15 @@ const decayTransformKey = (decayArray) => {
 const decayTypeHarvester = (decayTypeString) => {
     const decayTypeArray = decayTypeString.split(',')
     let protonchange = 0, nucleonChange = 0;
-    console.log(`decayTypeArray: "${decayTypeArray}"; protonchange: "${protonchange}"; nucleonChange: "${nucleonChange}"`);
     
     decayTypeArray.forEach(decayType => {
         let harvestArray = decayType.match(/([0-9])?([abdenpt][+-]?)/);
         harvestArray.shift();
         let transformArray = decayTransformKey(harvestArray);
-        console.log(`harvestArray: "${harvestArray}"; transformArray: "${transformArray}"`);
         protonchange += transformArray[0]
         nucleonChange += transformArray[1]
     })
 
-    console.log(`Change => protonchange: "${protonchange}"; nucleonChange: "${nucleonChange}"`)
     return [protonchange, nucleonChange]
 };
 
@@ -319,17 +311,12 @@ const decayAction = (protonCount, nucleonCount, decayKey) => {
  * @returns {number[]} An array consisting of the new proton count and new nucleon count
  */
 const decayOperation = (decayType, protonCount, nucleonCount) => {
-    console.log(`decayType: "${decayType}"; protonCount: "${protonCount}"; nucleonCount: "${nucleonCount}"`);
 
     const transformArray = decayTypeHarvester(decayType);
-    console.log(`transformArray: "${transformArray}";`);
 
     const newIsotopeValue = decayAction(protonCount, nucleonCount, transformArray);
-    console.log(`newIsotopeValue: "${newIsotopeValue}";`);
     const newProtonCount = newIsotopeValue[0];
     const newNucleonCount = newIsotopeValue[1];
-
-    console.log(`decayTypeDict: "${decayTypeDict}";`);
 
     return [newProtonCount, newNucleonCount]
 };

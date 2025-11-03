@@ -51,13 +51,9 @@ function executeDecayAction() {
         }
     });
 
-    console.log(`nucleonCountEntry: "${nucleonCountEntry}"; decayEntry: "${decayEntry}"`);
-
     const newIsotopeArray = decayOperation(decayEntry, selectedElement, nucleonCountEntry);
     const protonCount = newIsotopeArray[0]
     const elementName = protonCount <= 118 ? atomData[protonCount-1].elementName: protonCount;
-
-    console.log(`newIsotopeArray: "${newIsotopeArray}"; elementName: "${elementName}"`);
 
     localStorage.setItem("latestFissionSandboxIsotope", `${protonCount}-${newIsotopeArray[1]}`);
     changeElementText("fissionSandboxResult", `${elementName}-${newIsotopeArray[1]}`);
@@ -77,6 +73,7 @@ function setLatestProduct() {
     } else {
         changeElementText("fissionSandboxResult", 'An unknown element');
     }
+    updateSandboxEntries()
 };
 
 // ========[ Startup scripts ]========

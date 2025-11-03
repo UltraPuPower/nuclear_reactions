@@ -175,6 +175,7 @@ function resetHistory() {
     // localStorage.clear() // Clears complete local storage
     localStorage.removeItem("latestFissionCalculatorIsotope");
     localStorage.removeItem("fissionCalculatorHistory");
+    updateHistory()
 };
 
 setLatestProduct()
