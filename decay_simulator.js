@@ -248,11 +248,11 @@ const findNucleodeObject = (protonCount, nucleonCount) => {
  * @returns {string[]}
  */
 const arrayMultiplier = (array, multiplier) => {
-
+    console.log(`array: "${array}"; multiplier: "${multiplier}"`);
     for (let i = 0; i < array.length; i++) {
         array[i] = array[i] * multiplier
     }
-
+    console.log(`array: "${array}"`);
     return array
 };
 
