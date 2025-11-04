@@ -53,10 +53,14 @@ function executeDecayAction() {
 
     const newIsotopeArray = decayOperation(decayEntry, selectedElement, nucleonCountEntry);
     const protonCount = newIsotopeArray[0];
-    const elementName = protonCount <= 118 ? atomData[protonCount-1].elementName: protonCount;
+    if (protonCount > 0 && protonCount <= 118) {
+        const elementName = atomData[protonCount-1].elementName;
+        changeElementText("fissionSandboxResult", `${elementName}-${newIsotopeArray[1]}`);
+    } else {
+        changeElementText("fissionSandboxResult", `${protonCount}-${newIsotopeArray[1]}`);
+    }
 
     localStorage.setItem("latestFissionSandboxIsotope", `${protonCount}-${newIsotopeArray[1]}`);
-    changeElementText("fissionSandboxResult", `${elementName}-${newIsotopeArray[1]}`);
 };
 // ========[ Continue decay of new isotope ]========
 fissionSandboxContinueButton.addEventListener('click', setLatestProduct)
