@@ -46,13 +46,13 @@ function executeDecayAction() {
     const decayEntryArray = decayEntry.split(',');
 
     decayEntryArray.forEach(entry => {
-        if(!/([0-9])?([abdenpt][+-]?)/.test(entry)) {
+        if(!/^([0-9])?([abdenpt][+-]?)$/.test(entry)) {
             changeElementText("fissionSandboxResult", 'Invalid decay type');
         }
     });
 
     const newIsotopeArray = decayOperation(decayEntry, selectedElement, nucleonCountEntry);
-    const protonCount = newIsotopeArray[0]
+    const protonCount = newIsotopeArray[0];
     const elementName = protonCount <= 118 ? atomData[protonCount-1].elementName: protonCount;
 
     localStorage.setItem("latestFissionSandboxIsotope", `${protonCount}-${newIsotopeArray[1]}`);
@@ -61,7 +61,7 @@ function executeDecayAction() {
 // ========[ Continue decay of new isotope ]========
 fissionSandboxContinueButton.addEventListener('click', setLatestProduct)
 function setLatestProduct() {
-    const latestProduct = localStorage.getItem("latestFissionSandboxIsotope")
+    const latestProduct = localStorage.getItem("latestFissionSandboxIsotope");
     if (!latestProduct) return
 
     const isotopeArray = latestProduct.split('-');
@@ -73,7 +73,7 @@ function setLatestProduct() {
     } else {
         changeElementText("fissionSandboxResult", 'An unknown element');
     }
-    updateSandboxEntries()
+    updateSandboxEntries();
 };
 
 // ========[ Startup scripts ]========
@@ -82,4 +82,4 @@ function setLatestProduct() {
     fissionSandboxDecayEntry.disabled = true;
 
     // ========[ Continue with last product ]========
-    setLatestProduct()
+    setLatestProduct();

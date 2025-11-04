@@ -32,14 +32,14 @@ function updateIsotopeDropdown() {
     fissionDecaySelect.disabled = true;
     fissionReactionButton.disabled = true;
 
-    let selectedElement = fissionElementSelect.value;
+    const selectedElement = fissionElementSelect.value;
     if (selectedElement == "base") return;
 
-    let elementObject = findElementObject(selectedElement);
+    const elementObject = findElementObject(selectedElement);
 
-    let elementName = atomData[selectedElement-1].elementName;
+    const elementName = atomData[selectedElement-1].elementName;
 
-    let isotopeArray = elementObject.isotopes
+    const isotopeArray = elementObject.isotopes
     isotopeArray.forEach(isotope => {
         const option = document.createElement('option');
         option.value = isotope.nucleonCount;
@@ -48,7 +48,7 @@ function updateIsotopeDropdown() {
     });
 
     fissionIsotopeSelect.disabled = false;
-    localStorage.setItem("continuedFission", false)
+    localStorage.setItem("continuedFission", false);
 };
 
 // ========[ Handle change to isotope dropdown ]========
@@ -58,13 +58,13 @@ function updateDecayDropdown() {
     fissionDecaySelect.disabled = true;
     fissionReactionButton.disabled = true;
 
-    let selectedElement = fissionElementSelect.value;
-    let selectedIsotope = fissionIsotopeSelect.value;
+    const selectedElement = fissionElementSelect.value;
+    const selectedIsotope = fissionIsotopeSelect.value;
     if (selectedIsotope == "base") return;
 
-    let isotopeObject = findNucleodeObject(selectedElement, selectedIsotope);
+    const isotopeObject = findNucleodeObject(selectedElement, selectedIsotope);
 
-    let decayArray = isotopeObject.decay
+    const decayArray = isotopeObject.decay;
     if(decayArray == 'stable') {
         const option = document.createElement('option');
         option.value = 'stable';
@@ -73,7 +73,7 @@ function updateDecayDropdown() {
     } else {
         decayArray.forEach(decay => {
             const option = document.createElement('option');
-            const type = decay.decayType
+            const type = decay.decayType;
             option.value = type;
             option.textContent = `${type}`;
             fissionDecaySelect.appendChild(option);
@@ -81,7 +81,7 @@ function updateDecayDropdown() {
     }
 
     fissionDecaySelect.disabled = false;
-    localStorage.setItem("continuedFission", false)
+    localStorage.setItem("continuedFission", false);
 };
 
 // ========[ Handle change to decay dropdown ]========
@@ -97,23 +97,30 @@ function updateDecayButton() {
 // ========[ Execute decay reaction ]========
 fissionReactionButton.addEventListener('click', executeDecayAction);
 function executeDecayAction() {
-    let selectedElement = fissionElementSelect.value;
-    let selectedIsotope = fissionIsotopeSelect.value;
-    let selectedDecayType = fissionDecaySelect.value;
+    const selectedElement = fissionElementSelect.value;
+    const selectedIsotope = fissionIsotopeSelect.value;
+    const selectedDecayType = fissionDecaySelect.value;
 
-    let newIsotopeArray = decayOperation(selectedDecayType, selectedElement, selectedIsotope);
-    let elementName = atomData[newIsotopeArray[0]-1].elementName
+    const newIsotopeArray = decayOperation(selectedDecayType, selectedElement, selectedIsotope);
+    const protonCount = newIsotopeArray[0];
+    const nucleonCount = newIsotopeArray[1];
 
-    updateDecayHistory(`${selectedElement}-${selectedIsotope}`, selectedDecayType, `${newIsotopeArray[0]}-${newIsotopeArray[1]}`)
+    const elementName = atomData[protonCount-1].elementName;
 
-    localStorage.setItem("latestFissionCalculatorIsotope", `${newIsotopeArray[0]}-${newIsotopeArray[1]}`);
-    changeElementText("fissionResult", `${elementName}-${newIsotopeArray[1]}`);
+    if(selectedElement == protonCount && selectedIsotope == nucleonCount) {
+        updateDecayHistory(`${selectedElement}-${selectedIsotope}>Stable`);
+    } else {
+        updateDecayHistory(`${selectedElement}-${selectedIsotope}>${selectedDecayType}>${protonCount}-${nucleonCount}`);
+    }
+
+    localStorage.setItem("latestFissionCalculatorIsotope", `${protonCount}-${nucleonCount}`);
+    changeElementText("fissionResult", `${elementName}-${nucleonCount}`);
 };
 
 // ========[ Continue decay of new isotope ]========
 fissionContinueButton.addEventListener('click', setLatestProduct)
 function setLatestProduct() {
-    const latestProduct = localStorage.getItem("latestFissionCalculatorIsotope")
+    const latestProduct = localStorage.getItem("latestFissionCalculatorIsotope");
     if (!latestProduct) return
 
     const isotopeArray = latestProduct.split('-');
@@ -121,7 +128,7 @@ function setLatestProduct() {
 
     const nucleodeCheck = findNucleodeObject(protonCount, nucleonCount);
     if (!nucleodeCheck) {
-        console.log('nucleode not found')
+        console.log('nucleode not found');
         return
     }
 
@@ -134,20 +141,19 @@ function setLatestProduct() {
 };
 
 // ========[ decay history ]========
-function updateDecayHistory(oldIsotope, decayType, newIsotope) {
+function updateDecayHistory(addition) {
     const currentHistory = localStorage.getItem("fissionCalculatorHistory");
-    const historyAddition = `${oldIsotope}>${decayType}>${newIsotope}`;
     const continued = localStorage.getItem("continuedFission");
-    /**
+    /*
      * 92-235>a>90-231|90-231>b->91-231|91-231>b->92-239
      * input>decayType>output
      * | is a continued reaction, / is a new reaction chain
      */
-    let newHistory = ''
+    const newHistory = '';
     if (currentHistory) {
         newHistory += `${currentHistory}${continued == "true" ? '|' : '/'}${historyAddition}`;
     } else {
-        newHistory += historyAddition;
+        newHistory += addition;
     }
     localStorage.setItem("fissionCalculatorHistory", newHistory);
     updateHistory();
@@ -158,13 +164,13 @@ function updateHistory() {
 
     const historyPartArray = historyData.split('/');
 
-    let historyText = '';
+    const historyText = '';
     historyPartArray.forEach(chain => {
-        let reactionArray = chain.split('|')
+        const reactionArray = chain.split('|');
         reactionArray.forEach(reaction => {
-            historyText += `${reaction}<br>`
+            historyText += `${reaction}<br>`;
         });
-        historyText += '<br><br>'
+        historyText += '<br><br>';
     });
 
     changeElementText("fissionCalculatorHistory", historyText);
@@ -172,10 +178,10 @@ function updateHistory() {
 
 fissionClearHistoryButton.addEventListener('click', resetHistory);
 function resetHistory() {
-    // localStorage.clear() // Clears complete local storage
+    // localStorage.clear() // Clears compconste local storage
     localStorage.removeItem("latestFissionCalculatorIsotope");
     localStorage.removeItem("fissionCalculatorHistory");
-    updateHistory()
+    updateHistory();
 };
 
-setLatestProduct()
+setLatestProduct();

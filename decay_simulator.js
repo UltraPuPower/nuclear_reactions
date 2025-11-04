@@ -279,7 +279,7 @@ const decayTypeHarvester = (decayTypeString) => {
     let protonchange = 0, nucleonChange = 0;
     
     decayTypeArray.forEach(decayType => {
-        let harvestArray = decayType.match(/([0-9])?([abdenpt][+-]?)/);
+        let harvestArray = decayType.match(/^([0-9])?([abdenpt][+-]?)$/);
         harvestArray.shift();
         let transformArray = decayTransformKey(harvestArray);
         protonchange += transformArray[0]
@@ -311,6 +311,9 @@ const decayAction = (protonCount, nucleonCount, decayKey) => {
  * @returns {number[]} An array consisting of the new proton count and new nucleon count
  */
 const decayOperation = (decayType, protonCount, nucleonCount) => {
+    if (decayType.toLowerCase() == "stable") {
+        return [protonCount, nucleonCount]
+    }
 
     const transformArray = decayTypeHarvester(decayType);
 
