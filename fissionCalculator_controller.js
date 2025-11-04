@@ -151,7 +151,7 @@ function updateDecayHistory(addition) {
      */
     let newHistory = '';
     if (currentHistory) {
-        newHistory += `${currentHistory}${continued == "true" ? '|' : '/'}${historyAddition}`;
+        newHistory += `${currentHistory}${continued == "true" ? '|' : '/'}${addition}`;
     } else {
         newHistory += addition;
     }
