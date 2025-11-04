@@ -14,60 +14,109 @@
         <img id="logo" src="assets/name_clean.jpg" width="500" height="70" alt="UltraPuPower1">
         <h1 id="title">Nuclear Reactions</h1>
         <img id="icon" src="assets/biohazard_icon.png" width="100" height="100" alt="Biohazard_icon">
-    </div>
-    <div>
         <button id="buttonTheme" type="button" aria-label="Change to light theme">Change to light theme</button>
     </div>
+    <h1>Nuclear fission calculator</h1>
     <div class="box">
-        <div class="controllerBox">
-            <p id="textEnterData">Enter your data below</p>
-            <div class="interactable">
-                <select style='width: 215px' id="element-select">
+        <div class="fissionControllerBox">
+            <p class="title">Enter your data below</p>
+            <div class="interactableBox">
+                <select class="interactable" id="fissionElementSelect">
                     <option value="base">-- Select Element --</option>
                 </select>
             </div>
-            <div class="interactable">
-                <select style='width: 215px' id="isotope-select">
+            <div class="interactableBox">
+                <select class="interactable" id="fissionIsotopeSelect">
                     <option value="base">-- Select Isotope --</option>
                 </select>
             </div>
-            <div class="interactable">
-                <select style='width: 215px' id="decay-select">
+            <div class="interactableBox">
+                <select class="interactable" id="fissionDecaySelect">
                     <option value="base">-- Select Decay Mode --</option>
                 </select>
             </div>
-            <div class="interactable">
-                <button style='width: 215px' id="attemptReaction">Test nuclear reaction</button>
+            <div class="interactableBox">
+                <button class="interactable" id="attemptFissionReaction">Test nuclear reaction</button>
             </div>
         </div>
     </div>
     <div class="box">
-        <div class="resultBox">
-            <p style='white-space: nowrap'>Your reaction produced:</p>
-            <p id = "result">Air or something</p>
-            <div class="interactable">
-                <button id="continueReaction" style='white-space: nowrap'>Continue the nuclear reaction</button>
+        <div class="fissionOutputBox">
+            <p class="title">Result</p>
+            <p>Your reaction produced:</p>
+            <p class="resultLine" id="fissionResult">Air or something</p>
+            <div class="interactableBox">
+                <button class="interactable" id="continueFissionReaction">Continue the nuclear reaction</button>
+            </div>
+            <div class="interactableBox">
+                <button class="interactable" id="clearFissionHistory">Clear reaction history</button>
             </div>
         </div>
     </div>
     <div class="box">
-        <div class="historyBox">
-            <p>History:</p>
-            <p id = "history"> </p>
+        <div class="fissionHistoryBox">
+            <p class="title">History:</p>
+            <p id="fissionCalculatorHistory"> </p>
         </div>
     </div>
-    <script type="text/javascript" src="base_utils.js"></script>
-    <script type="module" src="controller.js"></script>
+    <h1>Nuclear fission sandbox</h1>
+    <div class="box">
+        <div class="fissionSandboxController">
+            <p class="title">Enter your data below</p>
+            <div class="interactableBox">
+                <select class="interactable" id="fissionSandboxElementSelect">
+                    <option value="base">-- Select Element --</option>
+                </select>
+            </div>
+            <div class="interactableBox">
+                <input type="text" class="textInput" id="fissionSandboxNucleonEntry" placeholder="Enter a nucleode count"/>
+            </div>
+            <div class="interactableBox">
+                <input type="text" class="textInput" id="fissionSandboxDecayEntry" placeholder="Enter a decay type"/>
+            </div>
+            <div class="interactableBox">
+                <button class="interactable" id="attemptSandboxFissionReaction">Test nuclear reaction</button>
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="fissionSandboxOutput">
+            <p class="title">Result</p>
+            <p>Your reaction produced:</p>
+            <p class="resultLine" id="fissionSandboxResult">Air or something</p>
+            <div class="interactableBox">
+                <button class="interactable" id="continueSandboxFissionReaction">Continue the nuclear reaction</button>
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="fissionSandboxLegend">
+            <p class="title">Legend</p>
+            <p>Decay types:</p>
+            <ul>
+            <li>Alpha Decay (a)</li>
+            <li>Beta minus Decay (b-)</li>
+            <li>Beta plus Decay (b+)</li>
+            <li>Electron Capture (e)</li>
+            <li>Proton Emission (p)</li>
+            <li>Neutron Emission (n)</li>
+            <li>Deuteron Emission (d)</li>
+            <li>Triton Emission (t)</li>
+            </ul>
+            <p>Format decay types like so<br>2n,6b-,5t</p>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="utils/theme_switcher.js"></script>
+    <script type="text/javascript" src="utils/type_restriction.js"></script>
+    <script type="module" src="fissionCalculator_controller.js"></script>
+    <script type="module" src="fissionSandbox_controller.js"></script>
 
-    <!-- <input type="text" id="elementInput" style='width: 110px' placeholder="Enter an element"/>
-    <input type="text" id="isotopeInput" style='width: 110px' placeholder="Enter an isotope"/>
-    <input type="text" id="decayTypeInput" style='width: 120px' placeholder="Enter a decay type"/> -->
-
-    <!-- <div style="padding-bottom:2000px">
+    <!-- <h1>Scrollbar activator</h1>
+    <div style="padding-bottom:2000px">
     <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
     <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-    <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-    </div> -->
+    <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p> -->
 
 </body>
 
