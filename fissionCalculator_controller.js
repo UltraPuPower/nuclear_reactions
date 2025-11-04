@@ -162,6 +162,7 @@ function updateDecayHistory(addition) {
 function updateHistory() {
     const historyData = localStorage.getItem("fissionCalculatorHistory");
 
+    if (!historyData) {changeElementText("fissionCalculatorHistory", ''); return}
     const historyPartArray = historyData.split('/');
 
     let historyText = '';
