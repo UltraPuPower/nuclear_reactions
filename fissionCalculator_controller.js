@@ -149,7 +149,7 @@ function updateDecayHistory(addition) {
      * input>decayType>output
      * | is a continued reaction, / is a new reaction chain
      */
-    const newHistory = '';
+    let newHistory = '';
     if (currentHistory) {
         newHistory += `${currentHistory}${continued == "true" ? '|' : '/'}${historyAddition}`;
     } else {
@@ -164,7 +164,7 @@ function updateHistory() {
 
     const historyPartArray = historyData.split('/');
 
-    const historyText = '';
+    let historyText = '';
     historyPartArray.forEach(chain => {
         const reactionArray = chain.split('|');
         reactionArray.forEach(reaction => {
