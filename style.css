@@ -1,10 +1,11 @@
 [data-theme="light"] {
-    --colorBackground: #3CD8C1;
-    --colorSpecialText: #153b50;
+    --colorBackground: #BAD0DE;
+    --colorBackgroundHighLight: #9EA7B8;
+    --colorSpecialText: #094672;
     --colorNormalText: #000000;
-    --colorHighlight: #2C5E68;
-    --colorBoxAccent: #73C5B3;
-    --colorBoxShadow: #66b3a4;
+    --colorHighlight: #1A3548;
+    --colorBoxAccent: #86A6A2;
+    --colorBoxShadow: #6C9184;
 }
 
 [data-theme="dark"] {
