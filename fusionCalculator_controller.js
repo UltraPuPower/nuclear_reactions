@@ -71,7 +71,7 @@ function executeFusionAction() {
         changeElementText("fusionCalculatorResult", 'Invalid second nucleode count');
     }
 
-    const newIsotopeArray = fusionOperation(firstSelectedElement, firstSelectedNucleon, secondSelectedElement, secondSelectedNucleon);
+    const newIsotopeArray = fusionOperation(Number(firstSelectedElement), Number(firstSelectedNucleon), Number(secondSelectedElement), Number(secondSelectedNucleon));
     const protonCount = newIsotopeArray[0], nucleonCount = newIsotopeArray[1];
 
     if (nucleonCount > 0 && protonCount > 0 && protonCount < nucleonCount) {
