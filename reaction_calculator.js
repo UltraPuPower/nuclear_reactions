@@ -37,22 +37,7 @@ import isotopeList from "./isotopeData.js"
  * n    - Neutron emission:     Emits a neutron from the core                       (p, n -= 1)
  * d    - Deuteron emission:    Emission of a hydrogen-2 nucleus                    (p -= 1, n -= 2)
  * t    - Triton emission:      Emission of a hydrogen-3 nucleus                    (p -= 1, n -= 3)
- * Combinations:
- * 2e   - Double Electron Capture
- * 2n   - Double Neutron
- * 2p   - Double Proton
- * 3p   - Triple Proton
- * b+,p  - Beta plus and Proton
- * b+,2p - Beta plus and Double Proton
- * b+,3p - Beta plus and Triple Proton
- * b+,a  - Beta plus and Alpha
- * 2b-  - Double Beta minus
- * b-,t  - Beta minus and Triton
- * b-,a  - Beta minus and Alpha
- * b-,n  - Beta minus and Neutron
- * b-,2n - Beta minus and Double Neutron
- * b-,3n - Beta minus and Triple Neutron
- * b-,4n - Beta minus and Quadruple Neutron
+ * All types can be randomly combined
  */
 
 /**
@@ -325,6 +310,38 @@ const decayOperation = (decayType, protonCount, nucleonCount) => {
 };
 
 /**
+ * Applies decay from isotopeList to an isotope
+ * @param {number} firstProtonCount - Number of protons for the first isotope
+ * @param {number} firstNucleonCount - Total number of nucleons for the first isotope
+ * @param {number} secondProtonCount - Number of protons for the second isotope
+ * @param {number} secondNucleonCount - Total number of nucleons for the second isotope
+ * @returns {number[]} An array consisting of the new proton count and new nucleon count
+ */
+const fusionOperation = (firstProtonCount, firstNucleonCount, secondProtonCount, secondNucleonCount) => {
+    if (typeof firstProtonCount != Number) {
+        console.log(`firstProtonCount is not a number but a ${typeof firstProtonCount}`);
+        return [0,0]
+    };
+    if (typeof firstNucleonCount != Number) {
+        console.log(`firstNucleonCount is not a number but a ${typeof firstNucleonCount}`);
+        return [0,0]
+    };
+    if (typeof secondProtonCount != Number) {
+        console.log(`secondProtonCount is not a number but a ${typeof secondProtonCount}`);
+        return [0,0]
+    };
+    if (typeof secondNucleonCount != Number) {
+        console.log(`secondNucleonCount is not a number but a ${typeof secondNucleonCount}`);
+        return [0,0]
+    };
+
+    const newProtonCount = firstProtonCount + secondProtonCount;
+    const newNucleonCount = firstNucleonCount + secondNucleonCount;
+
+    return [newProtonCount, newNucleonCount]
+}
+
+/**
  * Returns the proton count of an element corresponding to the element name or symbol. When both a name and symbol are entered the name takes precedent
  * @param {string} elementName A name representing an element
  * @param {string} elementSymbol A symbol representing an element
@@ -346,4 +363,4 @@ const elementProtonCount = (elementName = 0, elementSymbol = 0) => {
     return elementProtonCount
 };
 
-export { timePrefixDict, atomData, findElementObject, findNucleodeObject, decayOperation, elementProtonCount };
+export { timePrefixDict, atomData, findElementObject, findNucleodeObject, decayOperation, fusionOperation };

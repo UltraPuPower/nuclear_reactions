@@ -1,4 +1,4 @@
-// ========[ Sandbox isotope input ]========
+// ========[ Fission sandbox isotope input ]========
 const fissionSandboxIsotopeEntryButton = document.getElementById('fissionSandboxNucleonEntry');
 fissionSandboxIsotopeEntryButton.addEventListener('keydown', function(event) {
     if(event.ctrlKey || event.altKey || typeof event.key !== 'string' || event.key.length !== 1) return;
@@ -14,6 +14,25 @@ fissionSandboxDecayEntryButton.addEventListener('keydown', function(event) {
     if(event.ctrlKey || event.altKey || typeof event.key !== 'string' || event.key.length !== 1) return;
     
     if(!/[0-9abdnpt\+\-\,]+/.test(event.key)) {
+        event.preventDefault();
+    }
+});
+
+// ========[ Fusion calculator isotope input ]========
+const fusionCalculatorFirstNucleonEntry = document.getElementById('fusionCalculatorFirstNucleonEntry');
+fusionCalculatorFirstNucleonEntry.addEventListener('keydown', function(event) {
+    if(event.ctrlKey || event.altKey || typeof event.key !== 'string' || event.key.length !== 1) return;
+    
+    if(!/[0-9]+/.test(event.key)) {
+        event.preventDefault();
+    }
+});
+
+const fusionCalculatorSecondNucleonEntry = document.getElementById('fusionCalculatorSecondNucleonEntry');
+fusionCalculatorSecondNucleonEntry.addEventListener('keydown', function(event) {
+    if(event.ctrlKey || event.altKey || typeof event.key !== 'string' || event.key.length !== 1) return;
+    
+    if(!/[0-9]+/.test(event.key)) {
         event.preventDefault();
     }
 });

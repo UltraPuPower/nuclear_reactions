@@ -1,4 +1,4 @@
-import { timePrefixDict, atomData, findElementObject, findNucleodeObject, decayOperation, elementProtonCount } from "./decay_simulator.js";
+import { timePrefixDict, atomData, findElementObject, findNucleodeObject, decayOperation, fusionOperation } from "./reaction_calculator.js";
 import { changeElementText, changeButtonText, giveState, setState, switchState, getInput, fillDropDown } from "./utils/base_utils.js";
 
 // ========[ Declare Buttons ]========
@@ -6,8 +6,8 @@ const fissionSandboxElementSelect = document.getElementById('fissionSandboxEleme
 const fissionSandboxNucleonEntry = document.getElementById('fissionSandboxNucleonEntry');
 const fissionSandboxDecayEntry = document.getElementById('fissionSandboxDecayEntry');
 
-const fissionSandboxReactionButton = document.getElementById('attemptSandboxFissionReaction');
-const fissionSandboxContinueButton = document.getElementById('continueSandboxFissionReaction');
+const fissionSandboxReactionButton = document.getElementById('attemptFissionSandboxReaction');
+const fissionSandboxContinueButton = document.getElementById('continueFissionSandboxReaction');
 
 // ========[ Fill the element dropdowns ]========
 atomData.forEach(element => {

@@ -1,4 +1,4 @@
-import { timePrefixDict, atomData, findElementObject, findNucleodeObject, decayOperation, elementProtonCount } from "./decay_simulator.js";
+import { timePrefixDict, atomData, findElementObject, findNucleodeObject, decayOperation, fusionOperation } from "./reaction_calculator.js";
 import { changeElementText, changeButtonText, giveState, setState, switchState, getInput, fillDropDown } from "./utils/base_utils.js";
 
 // ========[ Declare Buttons ]========
