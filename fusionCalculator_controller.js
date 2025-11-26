@@ -16,6 +16,12 @@ atomData.forEach(element => {
     option.value = element.protonCount;
     option.textContent = `${element.elementName} (${element.protonCount})`;
     fusionCalculatorFirstElementSelect.appendChild(option);
+});
+
+atomData.forEach(element => {
+    const option = document.createElement('option');
+    option.value = element.protonCount;
+    option.textContent = `${element.elementName} (${element.protonCount})`;
     fusionCalculatorSecondElementSelect.appendChild(option);
 });
 
