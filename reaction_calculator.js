@@ -318,19 +318,19 @@ const decayOperation = (decayType, protonCount, nucleonCount) => {
  * @returns {number[]} An array consisting of the new proton count and new nucleon count
  */
 const fusionOperation = (firstProtonCount, firstNucleonCount, secondProtonCount, secondNucleonCount) => {
-    if (typeof firstProtonCount != number) {
+    if (typeof firstProtonCount != 'number') {
         console.log(`firstProtonCount is not a number but a ${typeof firstProtonCount}`);
         return [0,0]
     };
-    if (typeof firstNucleonCount != number) {
+    if (typeof firstNucleonCount != 'number') {
         console.log(`firstNucleonCount is not a number but a ${typeof firstNucleonCount}`);
         return [0,0]
     };
-    if (typeof secondProtonCount != number) {
+    if (typeof secondProtonCount != 'number') {
         console.log(`secondProtonCount is not a number but a ${typeof secondProtonCount}`);
         return [0,0]
     };
-    if (typeof secondNucleonCount != number) {
+    if (typeof secondNucleonCount != 'number') {
         console.log(`secondNucleonCount is not a number but a ${typeof secondNucleonCount}`);
         return [0,0]
     };
