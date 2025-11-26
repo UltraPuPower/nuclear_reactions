@@ -53,7 +53,7 @@ function updateIsotopeEntries() {const firstSelectedElement = fusionCalculatorFi
         secondEntry = true
     }
 
-    if (firstEntry && secondEntry) fissionSandboxReactionButton.disabled = false;
+    if (firstEntry && secondEntry) attemptFusionCalculatorReaction.disabled = false;
 };
 
 // ========[ Execute fusion reaction ]========
